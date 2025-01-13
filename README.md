@@ -2,17 +2,30 @@
 
 Server side rendering template
 
-## For dev:
+## For dev
 
 1. clone project `git clone https://github.com/jquery-dlya-slabih/ssr.git`
 2. install pnpm 10.x version `npm install -g pnpm@latest-10`
 3. install deps `pnpm i --frozen-lockfile`
 4. run dev `pnpm run dev`
 
-## For prod:
+## For prod
 
 1. npm run build
 2. npm run prod
+
+## Info
+
+If you are using **Nginx** or something else for serving static and compression, delete this strings from file `server.ts` and **compression** dependencies from file `package.json`.
+
+```ts
+if (isProduction) {
+  app.use(compression());
+  app.use(express.static('dist'));
+}
+```
+
+You may need to additionally reconfigure the public path. This can be done by setting `base` in the `vite.config.ts` file.
 
 # React + TypeScript + Vite
 

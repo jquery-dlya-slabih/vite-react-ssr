@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
+import compression from 'compression';
 import type { ViteDevServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -12,6 +13,12 @@ const serverEntry = isProduction ? './dist/server/entry-server.js' : 'src/entry-
 
 async function createServer() {
   const app = express();
+
+  if (isProduction) {
+    app.use(compression());
+    app.use(express.static('dist'));
+  }
+
   let vite: ViteDevServer;
 
   if (!isProduction) {
