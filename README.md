@@ -2,10 +2,17 @@
 
 Server side rendering template
 
+## For dev:
+
 1. clone project `git clone https://github.com/jquery-dlya-slabih/ssr.git`
 2. install pnpm 10.x version `npm install -g pnpm@latest-10`
 3. install deps `pnpm i --frozen-lockfile`
 4. run dev `pnpm run dev`
+
+## For prod:
+
+1. npm run build
+2. npm run prod
 
 # React + TypeScript + Vite
 
