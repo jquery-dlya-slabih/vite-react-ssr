@@ -30,7 +30,7 @@ async function createServer() {
     app.use(vite.middlewares);
   }
 
-  app.use('*', async (req, res, next) => {
+  app.use('*', async (req, res) => {
     const url = req.originalUrl;
     let render;
 
@@ -50,7 +50,12 @@ async function createServer() {
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {
       vite?.ssrFixStacktrace(error as Error);
-      next(error);
+      console.error(error);
+      res
+        .status(500)
+        .end(
+          'OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!'
+        );
     }
   });
 
