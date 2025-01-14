@@ -11,8 +11,9 @@ Server side rendering template
 
 ## For prod
 
-1. npm run build
-2. npm run prod
+1. install deps `pnpm i --frozen-lockfile`
+2. npm run build
+3. npm run prod
 
 ## Info
 
@@ -26,6 +27,20 @@ if (isProduction) {
 ```
 
 You may need to additionally reconfigure the public path. This can be done by setting `base` in the `vite.config.ts` file.
+The same goes for using the **vite-plugin-static-copy** plugin. It’s better to put the `robots.txt` file in the required section of the site at the CD stage. And remove the logic for copy file in the root from the CI stage.
+
+# TO DO
+
+- critical css
+- e2e + unit tests
+- ssg
+- tailwind
+- pwa
+- pre-push hook
+- eslint
+- scss
+- modulepreload / preload
+- 103 Early Hints
 
 # React + TypeScript + Vite
 
