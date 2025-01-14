@@ -54,6 +54,7 @@ If you want to delete all hooks:
 - scss
 - modulepreload / preload
 - 103 Early Hints
+- fonts
 
 # React + TypeScript + Vite
 
