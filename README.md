@@ -15,9 +15,9 @@ Server side rendering template
 2. npm run build
 3. npm run prod
 
-## Info
+## Serving static files
 
-If you are using **Nginx** or something else for serving static and compression, delete this strings from file `server.ts` and **compression** dependencies from file `package.json`.
+If you are using **nginx** or something else for serving static and compression, delete this strings from file `server.ts` and **compression** dependencies from file `package.json`.
 
 ```ts
 if (isProduction) {
@@ -29,6 +29,20 @@ if (isProduction) {
 You may need to additionally reconfigure the public path. This can be done by setting `base` in the `vite.config.ts` file.
 The same goes for using the **vite-plugin-static-copy** plugin. It’s better to put the `robots.txt` file in the required section of the site at the CD stage. And remove the logic for copy file in the root from the CI stage.
 
+# Hooks
+
+There is a `pre-push` hook in the `.githooks` folder. If you want to add another hook, for example `pre-commit`, then you need:
+
+1. create a file with name `pre-commit` in `.githooks` folder
+2. in project root use command `chmod +x .githooks/pre-commit`
+3. fill new hook with any commands, like `pre-push` hook
+
+If you want to delete all hooks:
+
+1. remove `.githooks` folder
+2. remove `prepare` command in `package.json`
+3. in project root use command `git config --unset core.hooksPath`
+
 # TO DO
 
 - critical css
@@ -36,8 +50,7 @@ The same goes for using the **vite-plugin-static-copy** plugin. It’s better to
 - ssg
 - tailwind
 - pwa
-- pre-push hook
-- eslint
+- eslint / stylelint
 - scss
 - modulepreload / preload
 - 103 Early Hints
