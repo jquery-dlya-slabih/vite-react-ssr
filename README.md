@@ -49,7 +49,7 @@ If you want to delete all hooks:
 - e2e + unit tests
 - ssg
 - tailwind
-- pwa
+- https://vite-pwa-org.netlify.app/ offline mode
 - eslint / stylelint
 - scss
 - modulepreload / preload
