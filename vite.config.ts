@@ -14,7 +14,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/client/**/*.{js,css,svg}'],
         navigateFallback: null
-      }}),
+      }
+    }),
     viteStaticCopy({
       targets: [{ src: 'public/robots.txt', dest: '..' }]
     })
