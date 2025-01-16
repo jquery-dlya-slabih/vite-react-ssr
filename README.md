@@ -43,6 +43,14 @@ If you want to delete all hooks:
 2. remove `prepare` command in `package.json`
 3. in project root use command `git config --unset core.hooksPath`
 
+# HTTPS
+
+1. use command `sudo nano /etc/hosts`
+2. add `127.0.0.1 ssr-local.com`
+3. save file
+4. use command `npm run dev`
+5. open page on https://ssr-local.com:3000
+
 # TO DO
 
 - critical css

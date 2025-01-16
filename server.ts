@@ -1,15 +1,20 @@
 import fs from 'node:fs';
+import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import compression from 'compression';
+import mkcert from 'vite-plugin-mkcert';
+
 import type { ViteDevServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
 const templatePath = isProduction ? 'dist/client/index.html' : 'index.html';
 const serverEntry = isProduction ? './dist/server/entry-server.js' : 'src/entry-server.tsx';
+const PORT = 3000;
+const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 
 async function createServer() {
   const app = express();
@@ -24,7 +29,13 @@ async function createServer() {
   if (!isProduction) {
     vite = await createViteServer({
       server: { middlewareMode: true },
-      appType: 'custom'
+      appType: 'custom',
+      plugins: [
+        mkcert({
+          hosts: [DOMAIN],
+          savePath: 'ssl'
+        })
+      ]
     });
 
     app.use(vite.middlewares);
@@ -59,9 +70,23 @@ async function createServer() {
     }
   });
 
-  app.listen(3000, () => {
-    console.info(`Server started at http://localhost:3000`);
-  });
+  if (isProduction) {
+    app.listen(PORT, () => {
+      console.info(`Server started at http://localhost:3000`);
+    });
+  } else {
+    https
+      .createServer(
+        {
+          cert: fs.readFileSync('ssl/cert.pem'),
+          key: fs.readFileSync('ssl/dev.pem')
+        },
+        app
+      )
+      .listen(PORT, DOMAIN, () => {
+        console.info(`Server started at https://${DOMAIN}:${PORT}`);
+      });
+  }
 }
 
 createServer();
