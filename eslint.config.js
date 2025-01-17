@@ -1,6 +1,5 @@
 import eslint from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tsEslint from 'typescript-eslint';
 import reactPlugin from 'eslint-plugin-react';
@@ -10,6 +9,7 @@ import importPlugin from 'eslint-plugin-import';
 
 export default tsEslint.config(
   { ignores: ['dist', 'eslint.config.js'] },
+  reactRefresh.configs.vite,
   eslint.configs.recommended,
   tsEslint.configs.strict,
   sonarjs.configs.recommended,
@@ -24,6 +24,11 @@ export default tsEslint.config(
       }
     },
     languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.serviceworker,
+        ...globals.node
+      },
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname

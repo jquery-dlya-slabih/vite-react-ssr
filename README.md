@@ -15,6 +15,18 @@ Server side rendering template
 2. npm run build
 3. npm run prod
 
+## Commands
+
+| description                    | command                  |
+| ------------------------------ | ------------------------ |
+| run dev build with dev server  | `npm run dev`            |
+| run build                      | `npm run build`          |
+| run prod server (build needed) | `npm run prod`           |
+| run linting                    | `npm run lint`           |
+| run prettier check             | `npm run prettier:check` |
+| run prettier write             | `npm run prettier:write` |
+| run type checking              | `npm run types`          |
+
 ## Serving static files
 
 If you are using **nginx** or something else for serving static and compression, delete this strings from file `server.ts` and **compression** dependencies from file `package.json`.
@@ -51,6 +63,11 @@ If you want to delete all hooks:
 4. use command `npm run dev`
 5. open page on https://ssr-local.com:3000
 
+# Aliasing
+
+1. add alias in file `vite.alias.ts`
+2. add alias in file `tsconfig.app.json`
+
 # TO DO
 
 - critical css
@@ -58,50 +75,8 @@ If you want to delete all hooks:
 - ssg
 - tailwind
 - https://vite-pwa-org.netlify.app/ offline mode
-- eslint / stylelint
+- stylelint
 - scss
 - modulepreload / preload
 - 103 Early Hints
 - fonts
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname
-    }
-  }
-});
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules
-  }
-});
-```
