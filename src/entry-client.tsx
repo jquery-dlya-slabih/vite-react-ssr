@@ -9,9 +9,15 @@ if ('serviceWorker' in navigator && !import.meta.env.DEV) {
   });
 }
 
-hydrateRoot(
-  document.getElementById('root')!,
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+const root = document.getElementById('root');
+
+if (root) {
+  hydrateRoot(
+    root,
+    <StrictMode>
+      <App />
+    </StrictMode>
+  );
+} else {
+  throw new Error('Container not found, must be HTMLElement');
+}

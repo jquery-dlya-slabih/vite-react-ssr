@@ -9,6 +9,8 @@ import mkcert from 'vite-plugin-mkcert';
 
 import type { ViteDevServer } from 'vite';
 
+import alias from './vite.alias.ts';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
 const templatePath = isProduction ? 'dist/client/index.html' : 'index.html';
@@ -30,6 +32,9 @@ async function createServer() {
     vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'custom',
+      resolve: {
+        alias
+      },
       plugins: [
         mkcert({
           hosts: [DOMAIN],
@@ -43,7 +48,7 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    let render;
+    let render: () => { html: string };
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
@@ -55,7 +60,7 @@ async function createServer() {
         render = (await import(serverEntry)).render;
       }
 
-      const appHtml = await render();
+      const appHtml = render();
       const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

@@ -1,4 +1,5 @@
 #!/bin/sh
 npm run prettier:check
 npm run lint
+npm run types
 npm run build

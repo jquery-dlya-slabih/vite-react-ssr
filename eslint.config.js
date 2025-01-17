@@ -11,11 +11,18 @@ import importPlugin from 'eslint-plugin-import';
 export default tsEslint.config(
   { ignores: ['dist', 'eslint.config.js'] },
   eslint.configs.recommended,
-  tsEslint.configs.recommendedTypeChecked,
+  tsEslint.configs.strict,
   sonarjs.configs.recommended,
-  // importPlugin.flatConfigs.recommended,
-  // importPlugin.flatConfigs.typescript,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.typescript,
   {
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: 'tsconfig.app.json'
+        }
+      }
+    },
     languageOptions: {
       parserOptions: {
         projectService: true,
