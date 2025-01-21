@@ -1,11 +1,15 @@
 import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
-import App from './app.tsx';
+import { StaticRouter } from 'react-router';
 
-export function render() {
+import Router from '@/router.tsx';
+
+export function render(url: string) {
   const html = renderToString(
     <StrictMode>
-      <App />
+      <StaticRouter location={url}>
+        <Router />
+      </StaticRouter>
     </StrictMode>
   );
 

@@ -1,7 +1,9 @@
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
+import Router from '@/router.tsx';
+
 import './index.css';
-import App from './app.tsx';
 
 if ('serviceWorker' in navigator && !import.meta.env.DEV) {
   window.addEventListener('load', () => {
@@ -15,7 +17,9 @@ if (root) {
   hydrateRoot(
     root,
     <StrictMode>
-      <App />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </StrictMode>
   );
 } else {

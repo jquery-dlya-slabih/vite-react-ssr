@@ -48,7 +48,7 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    let render: () => { html: string };
+    let render: (url: string) => { html: string };
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
@@ -60,7 +60,7 @@ async function createServer() {
         render = (await import(serverEntry)).render;
       }
 
-      const appHtml = render();
+      const appHtml = render(url);
       const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { TITLE } from '@constants';
-import reactLogo from './assets/react.svg';
+import { TITLE } from '@/constants';
+import reactLogo from '../../assets/react.svg';
 import viteLogo from '/vite.svg';
-import './app.css';
+import './main.css';
+import { NavLink } from 'react-router';
 
-function App() {
+function Main() {
   const [count, setCount] = useState(0);
 
   return (
@@ -25,8 +26,9 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <NavLink to="/about"> About us </NavLink>
     </>
   );
 }
 
-export default App;
+export default Main;
