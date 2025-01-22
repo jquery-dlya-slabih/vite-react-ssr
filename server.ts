@@ -8,6 +8,7 @@ import compression from 'compression';
 import mkcert from 'vite-plugin-mkcert';
 
 import type { ViteDevServer } from 'vite';
+import type { DehydratedState } from '@tanstack/react-query';
 
 import alias from './vite.alias.ts';
 
@@ -48,7 +49,7 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    let render: (url: string) => { html: string };
+    let render: (url: string) => Promise<{ html: string; dehydratedState: DehydratedState }>;
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
@@ -60,8 +61,12 @@ async function createServer() {
         render = (await import(serverEntry)).render;
       }
 
-      const appHtml = render(url);
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml.html);
+      const renderData = await render(url);
+      const rqs = JSON.stringify(renderData.dehydratedState);
+
+      const html = template
+        .replace(`<!--ssr-outlet-->`, renderData.html)
+        .replace(`<!--rqs-outlet-->`, `window.__REACT_QUERY_STATE__ = ${rqs};`);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {

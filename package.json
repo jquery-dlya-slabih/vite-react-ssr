@@ -20,6 +20,7 @@
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.64.2",
     "compression": "^1.7.5",
     "eslint-plugin-react": "^7.37.4",
     "express": "^4.21.2",
