@@ -1,9 +1,19 @@
-import { NavLink, useParams } from 'react-router';
+import { NavLink, useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
+
+import { getRecipe } from '@/api.ts';
 
 function Recipe() {
   const { id } = useParams();
-  const { data } = useQuery<IRecipe>({ queryKey: ['recipe/' + id] });
+
+  if (!id) {
+    const navigate = useNavigate();
+    navigate(-1);
+
+    return;
+  }
+
+  const { data } = useQuery<IRecipe>({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id) });
 
   return (
     <>

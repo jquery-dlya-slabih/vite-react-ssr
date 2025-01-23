@@ -20,7 +20,14 @@ if ('serviceWorker' in navigator && !import.meta.env.DEV) {
 }
 
 const dehydratedState = window.__REACT_QUERY_STATE__;
-const queryClient = new QueryClient();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000
+    }
+  }
+});
 
 const root = document.getElementById('root');
 

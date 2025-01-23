@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 
+import { getRecipes } from '@/api.ts';
+
 function Recipes() {
-  const query = useQuery<IRecipes>({ queryKey: ['recipes'] });
+  const query = useQuery<IRecipes>({ queryKey: ['recipes'], queryFn: getRecipes });
 
   return (
     <>
