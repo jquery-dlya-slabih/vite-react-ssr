@@ -26,7 +26,7 @@ function Main() {
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-      <NavLink to="/about"> About us </NavLink>
+      <NavLink to="/recipes"> Recipes </NavLink>
     </>
   );
 }

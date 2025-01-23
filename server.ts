@@ -49,7 +49,7 @@ async function createServer() {
 
   app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    let render: (url: string) => Promise<{ html: string; dehydratedState: DehydratedState }>;
+    let render: (url: string) => Promise<{ app: string; dehydratedState: DehydratedState; head: string }>;
 
     try {
       let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
@@ -65,7 +65,8 @@ async function createServer() {
       const rqs = JSON.stringify(renderData.dehydratedState);
 
       const html = template
-        .replace(`<!--ssr-outlet-->`, renderData.html)
+        .replace(`<!--head-outlet-->`, renderData.head)
+        .replace(`<!--ssr-outlet-->`, renderData.app)
         .replace(`<!--rqs-outlet-->`, `window.__REACT_QUERY_STATE__ = ${rqs};`);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
