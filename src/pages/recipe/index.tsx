@@ -1,19 +1,11 @@
-import { NavLink, useNavigate, useParams } from 'react-router';
+import { NavLink, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 
 import { getRecipe } from '@/api.ts';
 
 function Recipe() {
   const { id } = useParams();
-
-  if (!id) {
-    const navigate = useNavigate();
-    navigate(-1);
-
-    return;
-  }
-
-  const { data, isLoading } = useQuery<IRecipe>({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id) });
+  const { data, isLoading } = useQuery<IRecipe>({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id as string) });
 
   if (isLoading) {
     return <div>Loading...</div>;
