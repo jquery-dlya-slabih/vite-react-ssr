@@ -13,7 +13,11 @@ function Recipe() {
     return;
   }
 
-  const { data } = useQuery<IRecipe>({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id) });
+  const { data, isLoading } = useQuery<IRecipe>({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id) });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

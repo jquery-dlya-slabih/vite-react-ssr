@@ -5,7 +5,6 @@ function NotFound() {
     <>
       <h1>Not found 404</h1>
       <NavLink to="/">To main page</NavLink>
-      <NavLink to="/about">To about page</NavLink>
     </>
   );
 }

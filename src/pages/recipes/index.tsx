@@ -6,6 +6,10 @@ import { getRecipes } from '@/api.ts';
 function Recipes() {
   const query = useQuery<IRecipes>({ queryKey: ['recipes'], queryFn: getRecipes });
 
+  if (query.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <title>Recipes</title>
