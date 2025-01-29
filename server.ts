@@ -6,6 +6,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import compression from 'compression';
 import mkcert from 'vite-plugin-mkcert';
+import tailwindcss from '@tailwindcss/vite';
 
 import type { ViteDevServer } from 'vite';
 import type { DehydratedState } from '@tanstack/react-query';
@@ -37,6 +38,7 @@ async function createServer() {
         alias
       },
       plugins: [
+        tailwindcss(),
         mkcert({
           hosts: [DOMAIN],
           savePath: 'ssl'

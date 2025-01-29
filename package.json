@@ -20,6 +20,7 @@
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.0",
     "@tanstack/react-query": "^5.64.2",
     "compression": "^1.7.5",
     "eslint-plugin-react": "^7.37.4",
@@ -27,6 +28,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.3",
+    "tailwindcss": "^4.0.0",
     "vite-plugin-mkcert": "^1.17.6"
   },
   "devDependencies": {
@@ -47,6 +49,7 @@
     "globals": "^15.14.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tsx": "^4.19.2",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.18.2",

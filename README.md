@@ -80,3 +80,4 @@ If you want to delete all hooks:
 - modulepreload / preload
 - 103 Early Hints
 - fonts
+- https://dev.to/diballesteros/how-to-quickly-sort-imports-with-prettier-3po7
