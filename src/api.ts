@@ -14,3 +14,10 @@ export const getProducts = async (): Promise<IProduct[]> => {
 
   return data.products;
 };
+
+export const getPosts = async (): Promise<IPost[]> => {
+  const res = await fetch('https://dummyjson.com/posts/tag/love');
+  const data = await res.json();
+
+  return data.posts;
+};

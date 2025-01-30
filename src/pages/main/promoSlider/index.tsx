@@ -11,7 +11,9 @@ function PromoSlider() {
       {promo?.map((product) => {
         return (
           <div key={product.id} className="relative h-375 overflow-hidden">
-            <div className="absolute inset-x-20 top-36 z-3 text-[32px] font-bold text-white">{product.title}</div>
+            <div className="absolute inset-x-20 top-36 z-3 text-[32px] leading-36 font-bold text-white">
+              {product.title}
+            </div>
             <div className="absolute bottom-18 z-3 flex w-full justify-center">
               <div className="size-12 rounded-full bg-white" />
               <div className="ml-20 size-12 rounded-full bg-white/30" />
