@@ -1,10 +1,19 @@
 @import "tailwindcss";
 
 @theme {
+    --font-*: initial;
+
     --spacing: 1px;
     --color-violet-500: #646cff;
     --color-violet-600: #535bf2;
     --color-black-500: #242424;
     --color-white-500: #FFFFFFDD;
-    --font-base: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --font-roboto: Roboto, serif;
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
 }

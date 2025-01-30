@@ -9,3 +9,12 @@ interface IRecipe {
 interface IRecipes {
   recipes: IRecipe[];
 }
+
+interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  rating: number;
+  description: string;
+  images: string[];
+}

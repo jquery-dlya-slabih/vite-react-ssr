@@ -5,7 +5,7 @@ import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/r
 
 import Router from '@/router.tsx';
 
-import './index.css';
+import '@/index.css';
 
 declare global {
   interface Window {
