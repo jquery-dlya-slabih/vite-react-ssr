@@ -8,8 +8,10 @@ export default async function preloadData(url: string) {
   const currentRoute = routes.map((route) => matchPath(route.path, url)).find((route) => route);
 
   if (currentRoute?.pattern.path === PATH.MAIN) {
-    await queryClient.prefetchQuery({ queryKey: ['products'], queryFn: getProducts });
-    await queryClient.prefetchQuery({ queryKey: ['posts'], queryFn: getPosts });
+    await Promise.all([
+      queryClient.prefetchQuery({ queryKey: ['products'], queryFn: getProducts }),
+      queryClient.prefetchQuery({ queryKey: ['posts'], queryFn: getPosts })
+    ]);
   }
 
   if (currentRoute?.pattern.path === PATH.RECIPES) {

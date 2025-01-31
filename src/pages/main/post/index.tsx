@@ -23,14 +23,14 @@ const Post = () => {
             {title.replace('.', '')}
           </div>
           <div className="mt-16 line-clamp-3 w-240 text-white">{body.replace(title, '')}</div>
-          <div className="mt-34 flex items-baseline text-[18px] text-white/60 uppercase">
+          <div className="mt-34 flex items-center text-[12px] text-white/60 uppercase">
             {tags.map((tag) => (
               <span className="mr-8" key={tag}>
                 #{tag}
               </span>
             ))}
             <span className="mr-8">|</span>
-            <img src={clockImage} alt="clock" className="mr-8 size-14" />
+            <img src={clockImage} alt="clock" className="mr-8 size-12" />
             <span>4 min</span>
           </div>
         </div>
