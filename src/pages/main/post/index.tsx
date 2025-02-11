@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { getPosts } from '@/api.ts';
+import { getMainPost } from '@/api.ts';
 
 import lipsImage from './images/lips.webp';
 import clockImage from './images/clock.svg';
 
 const Post = () => {
-  const { data } = useQuery({ queryKey: ['posts'], queryFn: getPosts });
+  const { data } = useQuery({ queryKey: ['main_post'], queryFn: getMainPost });
 
   if (!data) {
     return null;
   }
 
-  const { title, body, tags } = data[0];
+  const { title, body, tags } = data;
 
   return (
     <>

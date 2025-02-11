@@ -1,6 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
-import { getRecipes, getRecipe, getProducts, getPosts } from '@/api.ts';
+import { getRecipes, getRecipe, getProducts, getPosts, getMainPost } from '@/api.ts';
 import routes, { PATH } from '@/routes.tsx';
 
 export default async function preloadData(url: string) {
@@ -9,8 +9,13 @@ export default async function preloadData(url: string) {
 
   if (currentRoute?.pattern.path === PATH.MAIN) {
     await Promise.all([
-      queryClient.prefetchQuery({ queryKey: ['products'], queryFn: getProducts }),
-      queryClient.prefetchQuery({ queryKey: ['posts'], queryFn: getPosts })
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ['posts'],
+        queryFn: getPosts,
+        initialPageParam: 0
+      }),
+      queryClient.prefetchQuery({ queryKey: ['main_post'], queryFn: getMainPost }),
+      queryClient.prefetchQuery({ queryKey: ['products'], queryFn: getProducts })
     ]);
   }
 

@@ -20,6 +20,13 @@ interface IProduct {
   images: string[];
 }
 
+interface IPostContract {
+  total: number;
+  posts: IPost[];
+  limit: number;
+  skip: number;
+}
+
 interface IPost {
   id: number;
   title: string;

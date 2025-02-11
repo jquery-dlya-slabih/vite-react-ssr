@@ -15,9 +15,14 @@ export const getProducts = async (): Promise<IProduct[]> => {
   return data.products;
 };
 
-export const getPosts = async (): Promise<IPost[]> => {
-  const res = await fetch('https://dummyjson.com/posts/tag/love');
+export const getPosts = async ({ pageParam }: { pageParam: number }): Promise<IPostContract> => {
+  const res = await fetch(`https://dummyjson.com/posts/tag/love?limit=${4}&skip=${pageParam}`);
+  return await res.json();
+};
+
+export const getMainPost = async (): Promise<IPost> => {
+  const res = await fetch(`https://dummyjson.com/posts/tag/love?limit=1`);
   const data = await res.json();
 
-  return data.posts;
+  return data.posts[0];
 };
