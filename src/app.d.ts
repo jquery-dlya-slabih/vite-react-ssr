@@ -10,6 +10,12 @@ interface IRecipes {
   recipes: IRecipe[];
 }
 
+interface IResponse {
+  total: number;
+  limit: number;
+  skip: number;
+}
+
 interface IProduct {
   id: number;
   title: string;
@@ -20,11 +26,8 @@ interface IProduct {
   images: string[];
 }
 
-interface IPostContract {
-  total: number;
-  posts: IPost[];
-  limit: number;
-  skip: number;
+interface IProductResponse extends IResponse {
+  products: IProduct[];
 }
 
 interface IPost {
@@ -33,4 +36,8 @@ interface IPost {
   body: string;
   tags: string[];
   views: number;
+}
+
+interface IPostResponse extends IResponse {
+  posts: IPost[];
 }

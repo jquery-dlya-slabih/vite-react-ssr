@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/api.ts';
+import { getTopProducts } from '@/api.ts';
 
 const BestSellers = () => {
-  const { data } = useQuery({ queryKey: ['products'], queryFn: getProducts });
+  const { data } = useQuery({ queryKey: ['top_products'], queryFn: getTopProducts });
 
   if (!data) {
     return null;

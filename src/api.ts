@@ -1,22 +1,17 @@
-export const getRecipes = async () => {
-  const res = await fetch('https://dummyjson.com/recipes');
-  return await res.json();
-};
-
-export const getRecipe = async (id: string) => {
-  const res = await fetch('https://dummyjson.com/recipes/' + id);
-  return await res.json();
-};
-
-export const getProducts = async (): Promise<IProduct[]> => {
-  const res = await fetch('https://dummyjson.com/products');
+export const getTopProducts = async (): Promise<IProduct[]> => {
+  const res = await fetch('https://dummyjson.com/products?limit=3');
   const data = await res.json();
 
   return data.products;
 };
 
-export const getPosts = async ({ pageParam }: { pageParam: number }): Promise<IPostContract> => {
-  const res = await fetch(`https://dummyjson.com/posts/tag/love?limit=${4}&skip=${pageParam}`);
+export const getProducts = async ({ pageParam }: { pageParam: number }): Promise<IProductResponse> => {
+  const res = await fetch(`https://dummyjson.com/products?limit=${4}&skip=${3 + pageParam}`);
+  return await res.json();
+};
+
+export const getPosts = async ({ pageParam }: { pageParam: number }): Promise<IPostResponse> => {
+  const res = await fetch(`https://dummyjson.com/posts/tag/love?limit=${4}&skip=${1 + pageParam}`);
   return await res.json();
 };
 

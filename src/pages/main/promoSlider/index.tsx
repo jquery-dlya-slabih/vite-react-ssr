@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getProducts } from '@/api.ts';
+import { getTopProducts } from '@/api.ts';
 
 function PromoSlider() {
-  const { data } = useQuery({ queryKey: ['products'], queryFn: getProducts });
+  const { data } = useQuery({ queryKey: ['top_products'], queryFn: getTopProducts });
   const promo = data?.slice(0, 1);
 
   return (

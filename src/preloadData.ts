@@ -1,6 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
-import { getRecipes, getRecipe, getProducts, getPosts, getMainPost } from '@/api.ts';
+import { getTopProducts, getPosts, getMainPost, getProducts } from '@/api.ts';
 import routes, { PATH } from '@/routes.tsx';
 
 export default async function preloadData(url: string) {
@@ -14,21 +14,18 @@ export default async function preloadData(url: string) {
         queryFn: getPosts,
         initialPageParam: 0
       }),
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ['products'],
+        queryFn: getProducts,
+        initialPageParam: 0
+      }),
       queryClient.prefetchQuery({ queryKey: ['main_post'], queryFn: getMainPost }),
-      queryClient.prefetchQuery({ queryKey: ['products'], queryFn: getProducts })
+      queryClient.prefetchQuery({ queryKey: ['top_products'], queryFn: getTopProducts })
     ]);
   }
 
   if (currentRoute?.pattern.path === PATH.RECIPES) {
-    await queryClient.prefetchQuery({ queryKey: ['recipes'], queryFn: getRecipes });
-  }
-
-  if (currentRoute?.pattern.path === PATH.RECIPE) {
-    const { id } = currentRoute.params;
-
-    if (id) {
-      await queryClient.prefetchQuery({ queryKey: ['recipe/' + id], queryFn: () => getRecipe(id) });
-    }
+    await queryClient.prefetchQuery({ queryKey: ['recipes'], queryFn: () => {} });
   }
 
   const dehydratedState = dehydrate(queryClient);
