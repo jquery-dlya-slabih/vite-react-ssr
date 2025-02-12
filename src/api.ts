@@ -10,8 +10,13 @@ export const getProducts = async ({ pageParam }: { pageParam: number }): Promise
   return await res.json();
 };
 
-export const getPosts = async ({ pageParam }: { pageParam: number }): Promise<IPostResponse> => {
+export const getPosts = async ({ pageParam }: { pageParam: number }): Promise<IPostsResponse> => {
   const res = await fetch(`https://dummyjson.com/posts/tag/love?limit=${4}&skip=${1 + pageParam}`);
+  return await res.json();
+};
+
+export const getPost = async (id: string): Promise<IPost> => {
+  const res = await fetch(`https://dummyjson.com/posts/${id}`);
   return await res.json();
 };
 

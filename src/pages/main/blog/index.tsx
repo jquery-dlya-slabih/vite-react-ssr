@@ -5,6 +5,7 @@ import { getPosts } from '@/api.ts';
 import lipsImage from './images/lips.webp';
 import girlImage from './images/girl.webp';
 import clockImage from './images/clock.svg';
+import { NavLink } from 'react-router';
 
 const Blog = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
@@ -35,7 +36,7 @@ const Blog = () => {
           .flat()
           .map((post, index) => (
             <Fragment key={post.id}>
-              <div className="mb-18 flex">
+              <NavLink to={`/posts/${post.id}`} className="mb-18 flex">
                 <img className="h-108 w-112" src={index % 2 ? girlImage : lipsImage} alt="girl" />
                 <div className="ml-14">
                   <div className="flex items-center text-[12px] text-black/30 uppercase">
@@ -47,7 +48,7 @@ const Blog = () => {
                   <div className="mt-4 text-[14px] font-bold uppercase">{post.title.replace('.', '')}</div>
                   <div className="mt-4 line-clamp-2 text-[12px]">{post.body.replace(post.title, '')}</div>
                 </div>
-              </div>
+              </NavLink>
               <div className="mb-18 h-1 w-full bg-black/30 last:hidden" />
             </Fragment>
           ))}

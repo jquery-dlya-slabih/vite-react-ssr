@@ -2,10 +2,10 @@ import { lazy, Suspense } from 'react';
 
 const MainPageLazyModule = lazy(() => import('@/pages/main'));
 
-const NotFoundRoute = () => (
+const MainRoute = () => (
   <Suspense>
     <MainPageLazyModule />
   </Suspense>
 );
 
-export default NotFoundRoute;
+export default MainRoute;

@@ -3,6 +3,7 @@ import { getMainPost } from '@/api.ts';
 
 import lipsImage from './images/lips.webp';
 import clockImage from './images/clock.svg';
+import { NavLink } from 'react-router';
 
 const Post = () => {
   const { data } = useQuery({ queryKey: ['main_post'], queryFn: getMainPost });
@@ -11,14 +12,14 @@ const Post = () => {
     return null;
   }
 
-  const { title, body, tags } = data;
+  const { title, body, tags, id } = data;
 
   return (
     <>
       <h2 className="px-20 pt-25 text-center text-[32px] font-bold tracking-[8px]">touché choice</h2>
-      <div className="relative mx-20 mt-30">
+      <NavLink className="relative mx-20 mt-30 block" to={`/posts/${id}`}>
         <img src={lipsImage} alt="lips" />
-        <div className="absolute top-32 left-18">
+        <div className="absolute top-18 left-18">
           <div className="w-240 text-[28px] leading-32 font-bold tracking-[1px] text-white">
             {title.replace('.', '')}
           </div>
@@ -34,7 +35,7 @@ const Post = () => {
             <span>4 min</span>
           </div>
         </div>
-      </div>
+      </NavLink>
     </>
   );
 };

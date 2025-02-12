@@ -1,6 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
-import { getTopProducts, getPosts, getMainPost, getProducts } from '@/api.ts';
+import { getTopProducts, getPosts, getPost, getMainPost, getProducts } from '@/api.ts';
 import routes, { PATH } from '@/routes.tsx';
 
 export default async function preloadData(url: string) {
@@ -22,6 +22,11 @@ export default async function preloadData(url: string) {
       queryClient.prefetchQuery({ queryKey: ['main_post'], queryFn: getMainPost }),
       queryClient.prefetchQuery({ queryKey: ['top_products'], queryFn: getTopProducts })
     ]);
+  } else if (currentRoute?.pattern.path === PATH.POST) {
+    await queryClient.prefetchQuery({
+      queryKey: ['post', currentRoute.params.id],
+      queryFn: () => getPost(currentRoute.params.id as string)
+    });
   }
 
   const dehydratedState = dehydrate(queryClient);

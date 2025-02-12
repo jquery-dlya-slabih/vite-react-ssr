@@ -38,6 +38,6 @@ interface IPost {
   views: number;
 }
 
-interface IPostResponse extends IResponse {
+interface IPostsResponse extends IResponse {
   posts: IPost[];
 }

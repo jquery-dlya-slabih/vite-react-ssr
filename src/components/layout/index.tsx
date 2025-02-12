@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
+import { useEffect } from 'react';
 
 import { HTML_DIVIDER } from '@/constants';
 
@@ -14,6 +15,16 @@ import instIcon from './images/inst.svg';
 import xIcon from './images/x.svg';
 
 export default function Layout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, [location]);
+
   return (
     <>
       {import.meta.env.SSR && HTML_DIVIDER}
@@ -40,7 +51,7 @@ export default function Layout() {
         <img src={bagIcon} alt="cart button" className="h-24 w-18" />
       </div>
       <Outlet />
-      <img src={footerImage} alt="footer gradient" className="mt-80 h-6 w-full" />
+      <img src={footerImage} alt="footer gradient" className="h-6 w-full" />
       <footer className="flex flex-col items-center bg-black px-20 pt-64 pb-20 text-white">
         <div className="text-center text-[30px] font-bold">SUBSCRIBE TO OUR NEWS LETTER</div>
         <input
