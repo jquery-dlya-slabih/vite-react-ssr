@@ -7,7 +7,7 @@ import Products from './products';
 function Main() {
   return (
     <>
-      <title>MAIN PAGE</title>
+      <title>Goods and blog</title>
       <PromoSlider />
       <Post />
       <BestSellers />
