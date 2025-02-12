@@ -67,9 +67,9 @@ async function createServer() {
       const rqs = JSON.stringify(renderData.dehydratedState);
 
       const html = template
-        .replace(`<!--head-outlet-->`, renderData.head)
-        .replace(`<!--ssr-outlet-->`, renderData.app)
-        .replace(`<!--rqs-outlet-->`, `window.__REACT_QUERY_STATE__ = ${rqs};`);
+        .replace('<!--head-outlet-->', renderData.head)
+        .replace('<!--ssr-outlet-->', renderData.app)
+        .replace('<!--rqs-outlet-->', `window.__REACT_QUERY_STATE__ = ${rqs};`);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {

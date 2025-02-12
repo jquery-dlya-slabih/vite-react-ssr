@@ -1,4 +1,3 @@
-import Topline from './topline';
 import PromoSlider from './promoSlider';
 import Post from './post';
 import BestSellers from './bestSellers';
@@ -8,13 +7,12 @@ import Products from './products';
 function Main() {
   return (
     <>
-      <Topline />
+      <title>MAIN PAGE</title>
       <PromoSlider />
       <Post />
       <BestSellers />
       <Blog />
       <Products />
-      <div className="mt-80 bg-black pb-300" />
     </>
   );
 }

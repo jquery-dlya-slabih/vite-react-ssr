@@ -1,3 +1,7 @@
+import { Outlet } from 'react-router';
+
+import { HTML_DIVIDER } from '@/constants';
+
 import menuIcon from './images/menu.svg';
 import searchIcon from './images/search.svg';
 import heartIcon from './images/heart.svg';
@@ -5,9 +9,10 @@ import profileIcon from './images/profile.svg';
 import bagIcon from './images/bag.svg';
 import gradientImage from './images/gradient.webp';
 
-export default function Topline() {
+export default function Layout() {
   return (
     <>
+      {import.meta.env.SSR && HTML_DIVIDER}
       <img src={gradientImage} alt="gradient" className="h-48 w-full" />
       <div className="absolute top-0 h-48 w-full px-20 pt-7 text-[11px]">
         <div className="grid grid-cols-2 tracking-[1px]">
@@ -30,6 +35,8 @@ export default function Topline() {
         <img src={profileIcon} alt="profile button" className="size-24" />
         <img src={bagIcon} alt="cart button" className="h-24 w-18" />
       </div>
+      <Outlet />
+      <footer className="mt-80 bg-black pb-300 text-white">2025</footer>
     </>
   );
 }

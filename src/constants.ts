@@ -1,1 +1,1 @@
-export const TITLE = 'Vite + React';
+export const HTML_DIVIDER = 'app start here';

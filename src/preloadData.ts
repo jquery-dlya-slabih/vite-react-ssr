@@ -24,10 +24,6 @@ export default async function preloadData(url: string) {
     ]);
   }
 
-  if (currentRoute?.pattern.path === PATH.RECIPES) {
-    await queryClient.prefetchQuery({ queryKey: ['recipes'], queryFn: () => {} });
-  }
-
   const dehydratedState = dehydrate(queryClient);
 
   return { queryClient, dehydratedState };
