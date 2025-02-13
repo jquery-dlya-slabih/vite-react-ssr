@@ -78,7 +78,7 @@ export default function Layout() {
         <input
           type="email"
           placeholder="example@email.com"
-          className="mt-12 w-208 border-b-1 border-b-white text-center outline-none placeholder:text-white"
+          className="mt-12 w-208 border-b-1 border-b-white text-center outline-none placeholder:text-white/70"
         />
         <button className="mt-34 w-208 cursor-pointer border border-white p-12 transition-opacity hover:opacity-80 active:opacity-70">
           SUBSCRIBE
