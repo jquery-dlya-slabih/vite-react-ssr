@@ -55,7 +55,7 @@ export default function Layout() {
           <Outlet />
         </div>
       </div>
-      <img src={footerImage} alt="footer gradient" className="mt-20 h-6 w-full lg:mt-40" />
+      <img src={footerImage} alt="footer gradient" className="h-6 w-full" />
       <footer className="flex flex-col items-center bg-black px-20 pt-64 pb-20 text-white">
         <div className="text-center text-[30px] font-bold">SUBSCRIBE TO OUR NEWS LETTER</div>
         <input

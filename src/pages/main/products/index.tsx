@@ -54,7 +54,7 @@ const Products = () => {
       {hasNextPage ? (
         <button
           onClick={() => fetchNextPage()}
-          className="mt-20 w-full border border-black py-10 text-[16px] font-medium"
+          className="my-20 w-full border border-black py-10 text-[16px] font-medium"
         >
           SHOW MORE
         </button>
