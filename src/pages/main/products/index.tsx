@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getProducts } from '@/api.ts';
 import starImage from './imges/star.svg';
+import { NavLink } from 'react-router';
 
 const Products = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
@@ -28,7 +29,7 @@ const Products = () => {
           .map((page) => page.products)
           .flat()
           .map((product) => (
-            <div key={product.id}>
+            <NavLink to={`/products/${product.id}`} key={product.id}>
               <div className="relative h-138 bg-pink-200 active:shadow-md active:outline active:outline-black">
                 <img className="h-full w-full object-contain p-15" src={product.images[0]} alt={product.title} />
                 <div className="absolute -right-2 -bottom-8 flex w-[80%] items-center justify-between bg-white">
@@ -47,13 +48,13 @@ const Products = () => {
               </div>
               <div className="mt-10 font-bold uppercase">{product.title}</div>
               <div className="mt-4">{product.price} &euro;</div>
-            </div>
+            </NavLink>
           ))}
       </div>
       {hasNextPage ? (
         <button
           onClick={() => fetchNextPage()}
-          className="mt-20 mb-80 w-full border border-black py-10 text-[16px] font-medium"
+          className="mt-20 w-full border border-black py-10 text-[16px] font-medium"
         >
           SHOW MORE
         </button>

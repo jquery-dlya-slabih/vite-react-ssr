@@ -1,10 +1,12 @@
 import Main from '@/routes/main.tsx';
 import Post from '@/routes/post.tsx';
+import Product from '@/routes/product.tsx';
 import NotFound from '@/routes/notFound.tsx';
 
 export enum PATH {
   MAIN = '/',
   POST = '/posts/:id',
+  PRODUCT = '/products/:id',
   NOT_FOUND = '*'
 }
 
@@ -16,6 +18,10 @@ export default [
   {
     path: PATH.POST,
     element: <Post />
+  },
+  {
+    path: PATH.PRODUCT,
+    element: <Product />
   },
   {
     path: PATH.NOT_FOUND,

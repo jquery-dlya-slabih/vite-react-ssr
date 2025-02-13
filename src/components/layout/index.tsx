@@ -43,15 +43,19 @@ export default function Layout() {
           <div className="text-end font-bold uppercase underline underline-offset-2">order tracking</div>
         </div>
       </div>
-      <div className="flex h-48 items-center justify-between px-20">
+      <div className="flex h-48 items-center justify-between px-20 shadow-md">
         <img src={menuIcon} alt="menu button" className="size-20" />
         <img src={searchIcon} alt="search button" className="size-24" />
         <img src={heartIcon} alt="favorites button" className="h-24 w-29" />
         <img src={profileIcon} alt="profile button" className="size-24" />
         <img src={bagIcon} alt="cart button" className="h-24 w-18" />
       </div>
-      <Outlet />
-      <img src={footerImage} alt="footer gradient" className="h-6 w-full" />
+      <div className="relative flex flex-col items-center">
+        <div className="flex max-w-[1200px] flex-col">
+          <Outlet />
+        </div>
+      </div>
+      <img src={footerImage} alt="footer gradient" className="mt-20 h-6 w-full lg:mt-40" />
       <footer className="flex flex-col items-center bg-black px-20 pt-64 pb-20 text-white">
         <div className="text-center text-[30px] font-bold">SUBSCRIBE TO OUR NEWS LETTER</div>
         <input

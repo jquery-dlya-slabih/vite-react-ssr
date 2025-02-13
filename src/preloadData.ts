@@ -1,6 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
-import { getTopProducts, getPosts, getPost, getMainPost, getProducts } from '@/api.ts';
+import { getTopProducts, getPosts, getPost, getMainPost, getProducts, getProduct } from '@/api.ts';
 import routes, { PATH } from '@/routes.tsx';
 
 export default async function preloadData(url: string) {
@@ -26,6 +26,11 @@ export default async function preloadData(url: string) {
     await queryClient.prefetchQuery({
       queryKey: ['post', currentRoute.params.id],
       queryFn: () => getPost(currentRoute.params.id as string)
+    });
+  } else if (currentRoute?.pattern.path === PATH.PRODUCT) {
+    await queryClient.prefetchQuery({
+      queryKey: ['product', currentRoute.params.id],
+      queryFn: () => getProduct(currentRoute.params.id as string)
     });
   }
 
