@@ -29,11 +29,11 @@ function Product() {
             </div>
             <div className="mt-24">{data.description}</div>
             <div className="mt-24 lg:mt-auto lg:flex">
-              <button className="block w-full border border-black p-12 text-center uppercase lg:w-208">
+              <button className="block w-full cursor-pointer border border-black p-12 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70 lg:w-208">
                 add to cart
               </button>
               <NavLink
-                className="mt-12 block w-full border border-black p-12 text-center uppercase lg:mt-0 lg:ml-12 lg:w-208"
+                className="mt-12 block w-full border border-black p-12 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70 lg:mt-0 lg:ml-12 lg:w-208"
                 to="/"
               >
                 Back

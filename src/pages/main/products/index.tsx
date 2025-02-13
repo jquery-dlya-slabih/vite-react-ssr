@@ -24,13 +24,13 @@ const Products = () => {
   return (
     <div className="mx-20">
       <h2 className="mt-64 px-20 text-center text-[32px] leading-[34px] font-bold">Products</h2>
-      <div className="mt-34 grid grid-cols-2 gap-20">
+      <div className="mt-34 grid grid-cols-2 gap-20 lg:grid-cols-4">
         {data.pages
           .map((page) => page.products)
           .flat()
           .map((product) => (
             <NavLink to={`/products/${product.id}`} key={product.id}>
-              <div className="relative h-138 bg-pink-200 active:shadow-md active:outline active:outline-black">
+              <div className="relative h-138 bg-pink-200 transition-shadow hover:shadow-md hover:outline hover:outline-black">
                 <img className="h-full w-full object-contain p-15" src={product.images[0]} alt={product.title} />
                 <div className="absolute -right-2 -bottom-8 flex w-[80%] items-center justify-between bg-white">
                   <div className="py-3 pl-6 text-[14px] opacity-30">{product.brand || 'brand not found'}</div>
@@ -54,11 +54,13 @@ const Products = () => {
       {hasNextPage ? (
         <button
           onClick={() => fetchNextPage()}
-          className="my-20 w-full border border-black py-10 text-[16px] font-medium"
+          className="my-20 w-full cursor-pointer border border-black py-10 text-[16px] font-medium transition-opacity hover:opacity-80 active:opacity-70"
         >
           SHOW MORE
         </button>
-      ) : null}
+      ) : (
+        <div className="my-20" />
+      )}
     </div>
   );
 };

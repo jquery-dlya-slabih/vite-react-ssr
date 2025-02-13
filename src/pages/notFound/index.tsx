@@ -28,7 +28,10 @@ function NotFound() {
         <div className="flex flex-col items-center">
           <h1 className="mt-64 text-[36px] font-bold">404</h1>
           <div className="mt-6">Ooops page not found</div>
-          <NavLink className="mt-24 w-204 border border-black p-10 text-center uppercase" to="/">
+          <NavLink
+            className="mt-24 w-204 border border-black p-10 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70"
+            to="/"
+          >
             To main page...
           </NavLink>
         </div>

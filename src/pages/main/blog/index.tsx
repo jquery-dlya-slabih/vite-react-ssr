@@ -30,13 +30,13 @@ const Blog = () => {
       <h2 className="mt-64 px-20 text-center text-[32px] leading-[34px] font-bold">
         get to know yourself with&nbsp;touché
       </h2>
-      <div className="mt-34">
+      <div className="mt-34 lg:grid lg:grid-cols-2 lg:gap-12">
         {data.pages
           .map((page) => page.posts)
           .flat()
           .map((post, index) => (
             <Fragment key={post.id}>
-              <NavLink to={`/posts/${post.id}`} className="mb-18 flex">
+              <NavLink to={`/posts/${post.id}`} className="mb-18 flex lg:mb-0">
                 <img className="h-108 w-112" src={index % 2 ? girlImage : lipsImage} alt="girl" />
                 <div className="ml-14">
                   <div className="flex items-center text-[12px] text-black/30 uppercase">
@@ -49,12 +49,15 @@ const Blog = () => {
                   <div className="mt-4 line-clamp-2 text-[12px]">{post.body.replace(post.title, '')}</div>
                 </div>
               </NavLink>
-              <div className="mb-18 h-1 w-full bg-black/30 last:hidden" />
+              <div className="mb-18 h-1 w-full bg-black/30 last:hidden lg:hidden" />
             </Fragment>
           ))}
       </div>
       {hasNextPage ? (
-        <button onClick={() => fetchNextPage()} className="w-full border border-black py-10 text-[16px] font-medium">
+        <button
+          onClick={() => fetchNextPage()}
+          className="w-full cursor-pointer border border-black py-10 text-[16px] font-medium transition-opacity hover:opacity-80 active:opacity-70 lg:mt-18"
+        >
           READ MORE
         </button>
       ) : null}

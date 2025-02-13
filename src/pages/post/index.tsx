@@ -16,7 +16,10 @@ function Post() {
       <div className="p-20">
         <h1 className="text-[22px] uppercase">{data.title}</h1>
         <div className="mt-24">{data.body}</div>
-        <NavLink className="mt-24 block w-full border border-black p-12 text-center uppercase lg:w-204" to="/">
+        <NavLink
+          className="mt-24 block w-full border border-black p-12 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70 lg:w-204"
+          to="/"
+        >
           Back
         </NavLink>
       </div>

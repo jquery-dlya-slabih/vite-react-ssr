@@ -9,8 +9,11 @@ function Main() {
     <>
       <title>Goods and blog</title>
       <PromoSlider />
-      <Post />
-      <BestSellers />
+      <h2 className="px-20 pt-25 text-center text-[32px] font-bold tracking-[8px]">touché choice</h2>
+      <div className="flex flex-col lg:flex-row">
+        <Post />
+        <BestSellers />
+      </div>
       <Blog />
       <Products />
     </>

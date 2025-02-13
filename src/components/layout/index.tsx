@@ -80,7 +80,9 @@ export default function Layout() {
           placeholder="example@email.com"
           className="mt-12 w-208 border-b-1 border-b-white text-center outline-none placeholder:text-white"
         />
-        <button className="mt-34 w-208 border border-white p-12">SUBSCRIBE</button>
+        <button className="mt-34 w-208 cursor-pointer border border-white p-12 transition-opacity hover:opacity-80 active:opacity-70">
+          SUBSCRIBE
+        </button>
         <h3 className="mt-64 text-[18px] leading-32 font-bold uppercase">Terms and privacy</h3>
         <a className="leading-32 uppercase" href="/">
           Privacy Policy

@@ -16,9 +16,8 @@ const Post = () => {
 
   return (
     <>
-      <h2 className="px-20 pt-25 text-center text-[32px] font-bold tracking-[8px]">touché choice</h2>
-      <NavLink className="relative mx-20 mt-30 block" to={`/posts/${id}`}>
-        <img src={lipsImage} alt="lips" />
+      <NavLink className="relative mx-20 mt-30 block lg:mr-0" to={`/posts/${id}`}>
+        <img src={lipsImage} alt="lips" className="h-270 w-full object-cover lg:h-312 lg:w-672" />
         <div className="absolute top-18 left-18">
           <div className="w-240 text-[28px] leading-32 font-bold tracking-[1px] text-white">
             {title.replace('.', '')}
