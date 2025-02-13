@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router';
+import { NavLink, Outlet, useLocation } from 'react-router';
 import { useEffect } from 'react';
 
 import { HTML_DIVIDER } from '@/constants';
@@ -29,26 +29,43 @@ export default function Layout() {
     <>
       {import.meta.env.SSR && HTML_DIVIDER}
       <img src={gradientImage} alt="gradient" className="h-48 w-full" />
-      <div className="absolute top-0 h-48 w-full px-20 pt-7 text-[11px]">
-        <div className="grid grid-cols-2 tracking-[1px]">
+      <div className="absolute top-0 h-48 w-full px-20 pt-7 text-[11px] lg:px-40 lg:py-6">
+        <div className="grid grid-cols-2 tracking-[1px] lg:flex lg:h-full lg:items-center lg:text-[14px]">
           <div>
             Delivery within <b>48</b> hours
           </div>
-          <div className="text-end">
+          <div className="text-end lg:ml-16">
             <b>2</b> gift samples
           </div>
-          <div>
+          <div className="lg:ml-16">
             Free delivery from <b>19</b> euros
           </div>
-          <div className="text-end font-bold uppercase underline underline-offset-2">order tracking</div>
+          <NavLink
+            to="tracking"
+            className="text-end font-bold uppercase underline underline-offset-2 transition-colors hover:opacity-70 lg:ml-auto lg:cursor-pointer"
+          >
+            order tracking
+          </NavLink>
         </div>
       </div>
-      <div className="flex h-48 items-center justify-between px-20 shadow-md">
-        <img src={menuIcon} alt="menu button" className="size-20" />
-        <img src={searchIcon} alt="search button" className="size-24" />
-        <img src={heartIcon} alt="favorites button" className="h-24 w-29" />
-        <img src={profileIcon} alt="profile button" className="size-24" />
-        <img src={bagIcon} alt="cart button" className="h-24 w-18" />
+      <div className="flex h-48 items-center justify-between px-20 shadow-md lg:justify-end">
+        <img src={menuIcon} alt="menu button" className="size-20 transition-colors hover:opacity-70 lg:hidden" />
+        <img
+          src={searchIcon}
+          alt="search button"
+          className="size-24 cursor-pointer transition-colors hover:opacity-70"
+        />
+        <img src={heartIcon} alt="favorites button" className="h-24 w-29 lg:-order-1 lg:mr-auto" />
+        <img
+          src={profileIcon}
+          alt="profile button"
+          className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
+        />
+        <img
+          src={bagIcon}
+          alt="cart button"
+          className="h-24 w-18 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
+        />
       </div>
       <div className="relative flex flex-col items-center">
         <div className="flex max-w-[1200px] flex-col">
