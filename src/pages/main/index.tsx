@@ -10,7 +10,7 @@ function Main() {
       <title>Goods and blog</title>
       <PromoSlider />
       <h2 className="px-20 pt-25 text-center text-[32px] font-bold tracking-[8px]">touché choice</h2>
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:mx-20 lg:flex-row">
         <Post />
         <BestSellers />
       </div>

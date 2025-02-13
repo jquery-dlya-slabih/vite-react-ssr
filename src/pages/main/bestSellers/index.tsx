@@ -12,7 +12,7 @@ const BestSellers = () => {
   const products = data.slice(1, 3);
 
   return (
-    <div className="mx-20 mt-18 flex lg:mt-30">
+    <div className="mx-20 mt-18 flex lg:mt-30 lg:mr-0">
       {products.map((product) => (
         <NavLink to={`/products/${product.id}`} className="basis-1/2 odd:mr-20" key={product.id}>
           <div className="relative h-138">
