@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
 import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Router from '@/router.tsx';
 
@@ -41,6 +42,7 @@ if (root) {
             <Router />
           </BrowserRouter>
         </HydrationBoundary>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </StrictMode>
   );
