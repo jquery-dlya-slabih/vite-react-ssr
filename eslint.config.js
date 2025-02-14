@@ -6,6 +6,7 @@ import reactPlugin from 'eslint-plugin-react';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import sonarjs from 'eslint-plugin-sonarjs';
 import importPlugin from 'eslint-plugin-import';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 
 export default tsEslint.config(
   { ignores: ['dist', 'eslint.config.js'] },
@@ -41,7 +42,9 @@ export default tsEslint.config(
   {
     rules: {
       'jsx-a11y/click-events-have-key-events': 'off',
-      'jsx-a11y/no-static-element-interactions': 'off'
+      'jsx-a11y/no-static-element-interactions': 'off',
+      'jsx-a11y/no-noninteractive-element-interactions': 'off'
     }
-  }
+  },
+  ...pluginQuery.configs['flat/recommended']
 );
