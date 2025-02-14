@@ -1,15 +1,3 @@
-interface IRecipe {
-  id: number;
-  name: string;
-  ingredients: string[];
-  tags: string[];
-  image: string;
-}
-
-interface IRecipes {
-  recipes: IRecipe[];
-}
-
 interface IResponse {
   total: number;
   limit: number;
@@ -40,4 +28,17 @@ interface IPost {
 
 interface IPostsResponse extends IResponse {
   posts: IPost[];
+}
+
+interface IUserResponse {
+  firstName?: string;
+  email?: string;
+  image?: string;
+  accessToken?: string;
+  loginError?: boolean;
+}
+
+interface ILoginCredentials {
+  username: string;
+  password: string;
 }

@@ -68,6 +68,13 @@ If you want to delete all hooks:
 1. add alias in file `vite.alias.ts`
 2. add alias in file `tsconfig.app.json`
 
+# Test users
+
+| login  | password   |
+| ------ | ---------- |
+| avat   | avatpass   |
+| emilys | emilyspass |
+
 # TO DO
 
 - critical css

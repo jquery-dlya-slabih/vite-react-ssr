@@ -1,8 +1,10 @@
 import { NavLink, Outlet, useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { HTML_DIVIDER } from '@/constants';
 import Authorize from '@/components/authorize';
+import { checkAuth } from '@/api.ts';
 
 import menuIcon from './images/menu.svg';
 import searchIcon from './images/search.svg';
@@ -16,6 +18,11 @@ import instIcon from './images/inst.svg';
 import xIcon from './images/x.svg';
 
 export default function Layout() {
+  const { data } = useQuery({
+    queryKey: ['me'],
+    queryFn: checkAuth
+  });
+
   const location = useLocation();
   const [authorizeFormShowed, setAuthorizeFormShowed] = useState(false);
 
@@ -59,12 +66,19 @@ export default function Layout() {
           className="size-24 cursor-pointer transition-colors hover:opacity-70"
         />
         <img src={heartIcon} alt="favorites button" className="h-24 w-29 lg:-order-1 lg:mr-auto" />
-        <img
-          onClick={() => setAuthorizeFormShowed(true)}
-          src={profileIcon}
-          alt="profile button"
-          className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
-        />
+        {data?.firstName ? (
+          <div className="flex lg:ml-16">
+            <div>{data.firstName}</div>
+            <img src={data.image} className="ml-6 size-24" alt="user avatar" />
+          </div>
+        ) : (
+          <img
+            onClick={() => setAuthorizeFormShowed(true)}
+            src={profileIcon}
+            alt="profile button"
+            className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
+          />
+        )}
         <img
           src={bagIcon}
           alt="cart button"

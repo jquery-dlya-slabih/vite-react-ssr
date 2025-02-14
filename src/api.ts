@@ -31,3 +31,43 @@ export const getMainPost = async (): Promise<IPost> => {
 
   return data.posts[0];
 };
+
+export const checkAuth = async (): Promise<IUserResponse> => {
+  const accesToken = document.cookie
+    .split(';')
+    .find((cookie) => cookie.includes('accessToken='))
+    ?.replace('accessToken=', '');
+
+  const res = await fetch('https://dummyjson.com/auth/me', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accesToken}`
+    }
+  });
+
+  if (res.status === 401) {
+    return {};
+  }
+
+  return await res.json();
+};
+
+export const login = async ({ username, password }: ILoginCredentials): Promise<IUserResponse> => {
+  const res = await fetch('https://dummyjson.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
+  });
+
+  if (res.status !== 200) {
+    return { loginError: true };
+  }
+
+  const data = await res.json();
+
+  if (data.accessToken) {
+    document.cookie = `accessToken=${data.accessToken}`;
+  }
+
+  return data;
+};
