@@ -6,7 +6,6 @@ import { login } from '@/api.ts';
 import type { KeyboardEvent, MouseEvent, ChangeEvent } from 'react';
 
 function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
-  const [loginError, setLoginError] = useState(false);
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
@@ -20,21 +19,18 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
 
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const { mutate, isPending, isError, reset } = useMutation({
     mutationFn: login,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['me'] });
       closeForm();
-    },
-    onError: () => {
-      setLoginError(true);
     }
   });
 
   const tryLogin = (event: MouseEvent<HTMLFormElement> | KeyboardEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    mutation.mutate({
+    mutate({
       username: usernameValue,
       password: passwordValue
     });
@@ -42,12 +38,12 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
 
   const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
     setUsernameValue(event.target.value);
-    setLoginError(false);
+    reset();
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value);
-    setLoginError(false);
+    reset();
   };
 
   return (
@@ -62,7 +58,7 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
               onChange={onChangeUsername}
               placeholder="username"
               required
-              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${loginError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
+              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${isError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
             />
             <input
               value={passwordValue}
@@ -71,11 +67,12 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
               autoComplete="on"
               placeholder="password"
               required
-              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${loginError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
+              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${isError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
             />
             <button
+              disabled={isPending}
               type="submit"
-              className="mt-34 w-208 cursor-pointer border border-black p-12 transition-opacity hover:opacity-80 active:opacity-70"
+              className="mt-34 w-208 cursor-pointer border border-black p-12 transition-opacity hover:opacity-80 active:opacity-70 disabled:cursor-progress disabled:border-black/50 disabled:text-black/50"
             >
               SUBMIT
             </button>
