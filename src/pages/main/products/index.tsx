@@ -7,6 +7,7 @@ const Products = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['products'],
     queryFn: getProducts,
+    select: (data) => data.pages.map((page) => page.products).flat(),
     initialPageParam: 0,
     getNextPageParam: (lastPage, _allPages, lastPageParam) => {
       if (lastPage.total <= lastPage.skip + 4) {
@@ -25,31 +26,28 @@ const Products = () => {
     <div className="mx-20">
       <h2 className="mt-64 px-20 text-center text-[32px] leading-[34px] font-bold">Products</h2>
       <div className="mt-34 grid grid-cols-2 gap-20 lg:grid-cols-4">
-        {data.pages
-          .map((page) => page.products)
-          .flat()
-          .map((product) => (
-            <NavLink to={`/products/${product.id}`} key={product.id}>
-              <div className="relative h-138 bg-pink-200 transition-shadow hover:shadow-md hover:outline hover:outline-black">
-                <img className="h-full w-full object-contain p-15" src={product.images[0]} alt={product.title} />
-                <div className="absolute -right-2 -bottom-8 flex w-[80%] items-center justify-between bg-white">
-                  <div className="py-3 pl-6 text-[14px] opacity-30">{product.brand || 'brand not found'}</div>
-                  <div className="flex">
-                    {new Array(Math.floor(product.rating)).fill('star').map((_value, index) => (
-                      <img
-                        className="mr-1 first:ml-4"
-                        src={starImage}
-                        key={index}
-                        alt={'rating of product:' + product.rating}
-                      />
-                    ))}
-                  </div>
+        {data.map((product) => (
+          <NavLink to={`/products/${product.id}`} key={product.id}>
+            <div className="relative h-138 bg-pink-200 transition-shadow hover:shadow-md hover:outline hover:outline-black">
+              <img className="h-full w-full object-contain p-15" src={product.images[0]} alt={product.title} />
+              <div className="absolute -right-2 -bottom-8 flex w-[80%] items-center justify-between bg-white">
+                <div className="py-3 pl-6 text-[14px] opacity-30">{product.brand || 'brand not found'}</div>
+                <div className="flex">
+                  {new Array(Math.floor(product.rating)).fill('star').map((_value, index) => (
+                    <img
+                      className="mr-1 first:ml-4"
+                      src={starImage}
+                      key={index}
+                      alt={'rating of product:' + product.rating}
+                    />
+                  ))}
                 </div>
               </div>
-              <div className="mt-10 font-bold uppercase">{product.title}</div>
-              <div className="mt-4">{product.price} &euro;</div>
-            </NavLink>
-          ))}
+            </div>
+            <div className="mt-10 font-bold uppercase">{product.title}</div>
+            <div className="mt-4">{product.price} &euro;</div>
+          </NavLink>
+        ))}
       </div>
       {hasNextPage ? (
         <button

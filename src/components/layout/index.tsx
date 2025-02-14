@@ -18,9 +18,11 @@ import instIcon from './images/inst.svg';
 import xIcon from './images/x.svg';
 
 export default function Layout() {
-  const { data } = useQuery({
+  const { data, isError, isPending } = useQuery({
     queryKey: ['me'],
-    queryFn: checkAuth
+    queryFn: checkAuth,
+    retry: 1,
+    retryDelay: 3000
   });
 
   const location = useLocation();
@@ -66,7 +68,7 @@ export default function Layout() {
           className="size-24 cursor-pointer transition-colors hover:opacity-70"
         />
         <img src={heartIcon} alt="favorites button" className="h-24 w-29 lg:-order-1 lg:mr-auto" />
-        {data?.firstName ? (
+        {!isError && !isPending ? (
           <div className="flex lg:ml-16">
             <div>{data.firstName}</div>
             <img src={data.image} className="ml-6 size-24" alt="user avatar" />

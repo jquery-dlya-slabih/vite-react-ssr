@@ -22,13 +22,12 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
 
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: (data) => {
-      if (data.loginError) {
-        setLoginError(true);
-      } else {
-        queryClient.invalidateQueries({ queryKey: ['me'] });
-        closeForm();
-      }
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['me'] });
+      closeForm();
+    },
+    onError: () => {
+      setLoginError(true);
     }
   });
 

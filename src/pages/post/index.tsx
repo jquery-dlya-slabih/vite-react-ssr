@@ -1,10 +1,13 @@
 import { NavLink, useParams } from 'react-router';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, skipToken } from '@tanstack/react-query';
 import { getPost } from '@/api.ts';
 
 function Post() {
   const { id } = useParams();
-  const { data, isPending, isError } = useQuery({ queryKey: ['post', id], queryFn: () => getPost(id || '') });
+  const { data, isPending, isError } = useQuery({
+    queryKey: ['post', id],
+    queryFn: id ? () => getPost(id) : skipToken
+  });
 
   if (isPending) {
     return <div className="animate-pulse p-50 font-bold text-pink-500">Loading...</div>;

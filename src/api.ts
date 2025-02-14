@@ -33,7 +33,7 @@ export const getMainPost = async (): Promise<IPost> => {
 };
 
 export const checkAuth = async (): Promise<IUserResponse> => {
-  const accesToken = document.cookie
+  const accessToken = document.cookie
     .split(';')
     .find((cookie) => cookie.includes('accessToken='))
     ?.replace('accessToken=', '');
@@ -41,12 +41,12 @@ export const checkAuth = async (): Promise<IUserResponse> => {
   const res = await fetch('https://dummyjson.com/auth/me', {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${accesToken}`
+      Authorization: `Bearer ${accessToken}`
     }
   });
 
-  if (res.status === 401) {
-    return {};
+  if (res.status !== 200) {
+    throw new Error('not authorized');
   }
 
   return await res.json();
@@ -60,7 +60,7 @@ export const login = async ({ username, password }: ILoginCredentials): Promise<
   });
 
   if (res.status !== 200) {
-    return { loginError: true };
+    throw new Error('error while logging in');
   }
 
   const data = await res.json();
