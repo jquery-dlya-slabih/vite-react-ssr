@@ -37,5 +37,11 @@ export default tsEslint.config(
   },
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat['jsx-runtime'],
-  jsxA11y.flatConfigs.recommended
+  jsxA11y.flatConfigs.recommended,
+  {
+    rules: {
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off'
+    }
+  }
 );

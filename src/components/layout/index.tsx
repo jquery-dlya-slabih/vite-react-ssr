@@ -1,7 +1,8 @@
 import { NavLink, Outlet, useLocation } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { HTML_DIVIDER } from '@/constants';
+import Authorize from '@/components/authorize';
 
 import menuIcon from './images/menu.svg';
 import searchIcon from './images/search.svg';
@@ -16,6 +17,7 @@ import xIcon from './images/x.svg';
 
 export default function Layout() {
   const location = useLocation();
+  const [authorizeFormShowed, setAuthorizeFormShowed] = useState(false);
 
   useEffect(() => {
     window.scrollTo({
@@ -28,6 +30,7 @@ export default function Layout() {
   return (
     <>
       {import.meta.env.SSR && HTML_DIVIDER}
+      {authorizeFormShowed && <Authorize closeForm={() => setAuthorizeFormShowed(false)} />}
       <img src={gradientImage} alt="gradient" className="h-48 w-full" />
       <div className="absolute top-0 h-48 w-full px-20 pt-7 text-[11px] lg:px-40 lg:py-6">
         <div className="grid grid-cols-2 tracking-[1px] lg:flex lg:h-full lg:items-center lg:text-[14px]">
@@ -57,6 +60,7 @@ export default function Layout() {
         />
         <img src={heartIcon} alt="favorites button" className="h-24 w-29 lg:-order-1 lg:mr-auto" />
         <img
+          onClick={() => setAuthorizeFormShowed(true)}
           src={profileIcon}
           alt="profile button"
           className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
@@ -78,7 +82,7 @@ export default function Layout() {
         <input
           type="email"
           placeholder="example@email.com"
-          className="mt-12 w-208 border-b-1 border-b-white text-center outline-none placeholder:text-white/70"
+          className="mt-12 w-208 border-b-1 border-b-white p-5 text-center outline-none placeholder:text-white/70"
         />
         <button className="mt-34 w-208 cursor-pointer border border-white p-12 transition-opacity hover:opacity-80 active:opacity-70">
           SUBSCRIBE
