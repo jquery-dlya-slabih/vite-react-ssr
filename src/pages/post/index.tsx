@@ -4,10 +4,14 @@ import { getPost } from '@/api.ts';
 
 function Post() {
   const { id } = useParams();
-  const { data } = useQuery({ queryKey: ['post', id], queryFn: () => getPost(id || '') });
+  const { data, isPending, isError } = useQuery({ queryKey: ['post', id], queryFn: () => getPost(id || '') });
 
-  if (!data) {
-    return null;
+  if (isPending) {
+    return <div className="animate-pulse p-50 font-bold text-pink-500">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="p-50 font-bold text-red-400">Something went wrong...</div>;
   }
 
   return (

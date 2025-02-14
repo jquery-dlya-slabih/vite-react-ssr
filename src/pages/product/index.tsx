@@ -4,10 +4,14 @@ import { getProduct } from '@/api.ts';
 
 function Product() {
   const { id } = useParams();
-  const { data } = useQuery({ queryKey: ['product', id], queryFn: () => getProduct(id || '') });
+  const { data, isError, isPending } = useQuery({ queryKey: ['product', id], queryFn: () => getProduct(id || '') });
 
-  if (!data) {
-    return null;
+  if (isPending) {
+    return <div className="animate-pulse p-50 font-bold text-pink-500">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="p-50 font-bold text-red-400">Something went wrong...</div>;
   }
 
   return (

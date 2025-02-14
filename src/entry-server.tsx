@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { HTML_DIVIDER } from '@/constants';
 
 import Router from '@/router.tsx';
@@ -18,6 +19,7 @@ export async function render(url: string) {
             <Router />
           </StaticRouter>
         </HydrationBoundary>
+        <ReactQueryDevtools />
       </QueryClientProvider>
     </StrictMode>
   );
