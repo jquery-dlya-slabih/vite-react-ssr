@@ -21,8 +21,8 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
 
   const { mutate, isPending, isError, reset } = useMutation({
     mutationFn: login,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['me'] });
+    onSuccess: (data) => {
+      queryClient.setQueryData(['me'], data);
       closeForm();
     }
   });
