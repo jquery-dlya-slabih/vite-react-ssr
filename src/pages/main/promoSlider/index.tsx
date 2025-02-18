@@ -39,19 +39,17 @@ function PromoSlider() {
   return (
     <div className="relative h-375 overflow-y-hidden">
       <div ref={carouselRef} className="flex h-395 snap-x snap-mandatory overflow-x-scroll scroll-smooth lg:mx-20">
-        {data?.map((product, index) => {
+        {data?.map(({ id, title, images }, index) => {
           return (
             <NavLink
               id={`slide-${index}`}
-              to={`/products/${product.id}`}
-              key={product.id}
+              to={`/products/${id}`}
+              key={id}
               className="relative w-full flex-shrink-0 snap-center snap-always"
             >
-              <div className="absolute top-36 left-18 z-3 text-[32px] leading-36 font-bold text-white">
-                {product.title}
-              </div>
+              <div className="absolute top-36 left-18 z-3 text-[32px] leading-36 font-bold text-white">{title}</div>
               <div className="bg-black-500/50 absolute z-2 h-full w-full" />
-              <img className="z-1 h-full w-full object-cover" src={product.images[0]} alt={product.title} />
+              <img className="z-1 h-full w-full object-cover" src={images[0]} alt={title} />
             </NavLink>
           );
         })}

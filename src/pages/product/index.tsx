@@ -17,24 +17,22 @@ function Product() {
     return <div className="p-50 font-bold text-red-400">Something went wrong...</div>;
   }
 
+  const { title, images, price, rating, description } = data;
+
   return (
     <>
-      <title>{data.title}</title>
+      <title>{title}</title>
       <div className="p-20">
         <div className="lg:flex">
-          <img
-            src={data.images[0]}
-            alt={data.title}
-            className="h-312 w-full bg-gray-200 object-contain lg:h-390 lg:w-422"
-          />
+          <img src={images[0]} alt={title} className="h-312 w-full bg-gray-200 object-contain lg:h-390 lg:w-422" />
           <div className="mt-24 lg:mt-0 lg:flex lg:flex-col lg:pl-20">
-            <h1 className="text-[22px] font-light uppercase">{data.title}</h1>
-            <div className="font-bold uppercase">{data.price} &euro;</div>
+            <h1 className="text-[22px] font-light uppercase">{title}</h1>
+            <div className="font-bold uppercase">{price} &euro;</div>
             <div>
               <span className="font-bold">Rating: </span>
-              <span className={data.rating >= 4 ? 'text-green-600' : 'text-orange-300'}>{data.rating}</span>
+              <span className={rating >= 4 ? 'text-green-600' : 'text-orange-300'}>{rating}</span>
             </div>
-            <div className="mt-24">{data.description}</div>
+            <div className="mt-24">{description}</div>
             <div className="mt-24 lg:mt-auto lg:flex">
               <button className="block w-full cursor-pointer border border-black p-12 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70 lg:w-208">
                 add to cart

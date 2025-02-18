@@ -7,6 +7,7 @@ import { createServer as createViteServer } from 'vite';
 import compression from 'compression';
 import mkcert from 'vite-plugin-mkcert';
 import tailwindcss from '@tailwindcss/vite';
+import serialize from 'serialize-javascript';
 
 import type { ViteDevServer } from 'vite';
 import type { DehydratedState } from '@tanstack/react-query';
@@ -32,7 +33,9 @@ async function createServer() {
 
   if (!isProduction) {
     vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true
+      },
       appType: 'custom',
       resolve: {
         alias
@@ -64,7 +67,7 @@ async function createServer() {
       }
 
       const renderData = await render(url);
-      const rqs = JSON.stringify(renderData.dehydratedState);
+      const rqs = serialize(renderData.dehydratedState);
 
       const html = template
         .replace('<!--head-outlet-->', renderData.head)

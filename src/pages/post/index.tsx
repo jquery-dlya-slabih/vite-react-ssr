@@ -17,12 +17,14 @@ function Post() {
     return <div className="p-50 font-bold text-red-400">Something went wrong...</div>;
   }
 
+  const { title, body } = data;
+
   return (
     <>
-      <title>{data.title}</title>
+      <title>{title}</title>
       <div className="p-20">
-        <h1 className="text-[22px] uppercase">{data.title}</h1>
-        <div className="mt-24">{data.body}</div>
+        <h1 className="text-[22px] uppercase">{title}</h1>
+        <div className="mt-24">{body}</div>
         <NavLink
           className="mt-24 block w-full border border-black p-12 text-center uppercase transition-opacity hover:opacity-80 active:opacity-70 lg:w-204"
           to="/"

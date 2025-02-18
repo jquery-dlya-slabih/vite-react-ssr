@@ -77,6 +77,7 @@ If you want to delete all hooks:
 
 # TO DO
 
+- https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
 - critical css
 - e2e + unit tests
 - ssg

@@ -15,11 +15,11 @@ const BestSellers = () => {
 
   return (
     <div className="mx-20 mt-18 flex lg:mt-30 lg:mr-0">
-      {data.map((product) => (
-        <NavLink to={`/products/${product.id}`} className="basis-1/2 odd:mr-20" key={product.id}>
+      {data.map(({ id, images, brand, price, title }) => (
+        <NavLink to={`/products/${id}`} className="basis-1/2 odd:mr-20" key={id}>
           <div className="relative h-138">
             <img
-              src={product.images[0]}
+              src={images[0]}
               alt="product"
               className="absolute top-0 h-full w-full bg-linear-to-r from-violet-400 to-pink-500 object-contain"
             />
@@ -27,9 +27,9 @@ const BestSellers = () => {
               best seller january 2025
             </div>
           </div>
-          <div className="mt-4 text-black/30">{product.brand}</div>
-          <div className="mt-8 text-[18px] leading-20 font-bold tracking-[1px] uppercase">{product.title}</div>
-          <div className="mt-8">{product.price} &euro;</div>
+          <div className="mt-4 text-black/30">{brand}</div>
+          <div className="mt-8 text-[18px] leading-20 font-bold tracking-[1px] uppercase">{title}</div>
+          <div className="mt-8">{price} &euro;</div>
         </NavLink>
       ))}
     </div>
