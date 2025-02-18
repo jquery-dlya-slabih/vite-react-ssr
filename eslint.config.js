@@ -47,5 +47,5 @@ export default tsEslint.config(
       'jsx-a11y/no-autofocus': 'off'
     }
   },
-  ...pluginQuery.configs['flat/recommended']
+  pluginQuery.configs['flat/recommended']
 );
