@@ -8,9 +8,11 @@ import compression from 'compression';
 import mkcert from 'vite-plugin-mkcert';
 import tailwindcss from '@tailwindcss/vite';
 import serialize from 'serialize-javascript';
+import Redis from 'ioredis';
 
 import type { ViteDevServer } from 'vite';
 import type { DehydratedState } from '@tanstack/react-query';
+import type { Request } from 'express';
 
 import alias from './vite.alias.ts';
 
@@ -21,8 +23,30 @@ const serverEntry = isProduction ? './dist/server/entry-server.js' : 'src/entry-
 const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 
+async function renderHTML(req: Request, vite: ViteDevServer) {
+  const url = req.originalUrl;
+  let render: (url: string) => Promise<{ app: string; dehydratedState: DehydratedState; head: string }>;
+  let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
+
+  if (!isProduction) {
+    template = await vite.transformIndexHtml(url, template);
+    render = (await vite.ssrLoadModule(serverEntry)).render;
+  } else {
+    render = (await import(serverEntry)).render;
+  }
+
+  const renderData = await render(url);
+  const rqs = serialize(renderData.dehydratedState);
+
+  return template
+    .replace('<!--head-outlet-->', renderData.head)
+    .replace('<!--ssr-outlet-->', renderData.app)
+    .replace('<!--rqs-outlet-->', `window.__REACT_QUERY_STATE__ = ${rqs};`);
+}
+
 async function createServer() {
   const app = express();
+  const redis = new Redis({ commandTimeout: 50 });
 
   if (isProduction) {
     app.use(compression());
@@ -52,27 +76,25 @@ async function createServer() {
     app.use(vite.middlewares);
   }
 
+  app.use('/reset_redis_cache', async (_req, res) => {
+    const data = await redis.flushall().catch(() => console.log('redis reset cache error'));
+
+    res.status(200).json(data || 'NOT OK');
+  });
+
   app.use('*', async (req, res) => {
     const url = req.originalUrl;
-    let render: (url: string) => Promise<{ app: string; dehydratedState: DehydratedState; head: string }>;
 
     try {
-      let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
+      let html: string;
+      const cacheData = await redis.get(url).catch(() => console.log('redis get cache error'));
 
-      if (!isProduction) {
-        template = await vite.transformIndexHtml(url, template);
-        render = (await vite.ssrLoadModule(serverEntry)).render;
+      if (cacheData) {
+        html = cacheData;
       } else {
-        render = (await import(serverEntry)).render;
+        html = await renderHTML(req, vite);
+        redis.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
       }
-
-      const renderData = await render(url);
-      const rqs = serialize(renderData.dehydratedState);
-
-      const html = template
-        .replace('<!--head-outlet-->', renderData.head)
-        .replace('<!--ssr-outlet-->', renderData.app)
-        .replace('<!--rqs-outlet-->', `window.__REACT_QUERY_STATE__ = ${rqs};`);
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {

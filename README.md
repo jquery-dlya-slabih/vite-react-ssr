@@ -75,6 +75,15 @@ If you want to delete all hooks:
 | avat   | avatpass   |
 | emilys | emilyspass |
 
+# Redis
+
+Cache for all html pages. Cache expiration eq 10 min.
+
+1. install redis `brew install redis`
+2. run redis `redis-server`
+
+For reset all cache use `/reset_redis_cache` handler.
+
 # TO DO
 
 - https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
