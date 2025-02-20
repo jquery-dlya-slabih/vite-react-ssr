@@ -22,6 +22,7 @@ const templatePath = isProduction ? 'dist/client/index.html' : 'index.html';
 const serverEntry = isProduction ? './dist/server/entry-server.js' : 'src/entry-server.tsx';
 const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
+const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
 async function renderHTML(req: Request, vite: ViteDevServer) {
   const url = req.originalUrl;
@@ -46,7 +47,7 @@ async function renderHTML(req: Request, vite: ViteDevServer) {
 
 async function createServer() {
   const app = express();
-  const redis = new Redis({ commandTimeout: 50 });
+  const redis = IS_REDIS_DISABLED ? undefined : new Redis({ commandTimeout: 50 });
 
   if (isProduction) {
     app.use(compression());
@@ -77,7 +78,7 @@ async function createServer() {
   }
 
   app.use('/reset_redis_cache', async (_req, res) => {
-    const data = await redis.flushall().catch(() => console.log('redis reset cache error'));
+    const data = await redis?.flushall().catch(() => console.log('redis reset cache error'));
 
     res.status(200).json(data || 'NOT OK');
   });
@@ -87,13 +88,13 @@ async function createServer() {
 
     try {
       let html: string;
-      const cacheData = await redis.get(url).catch(() => console.log('redis get cache error'));
+      const cacheData = await redis?.get(url).catch(() => console.log('redis get cache error'));
 
       if (cacheData) {
         html = cacheData;
       } else {
         html = await renderHTML(req, vite);
-        redis.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
+        redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
       }
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html);

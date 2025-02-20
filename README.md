@@ -81,6 +81,8 @@ Cache for all html pages. Cache expiration eq 10 min.
 
 1. install redis `brew install redis`
 2. run redis `redis-server`
+3. change value of env `DISABLE_REDIS_CACHE` in `package.json` to `false`
+4. use `npm run dev` command
 
 For reset all cache use `/reset_redis_cache` handler.
 
