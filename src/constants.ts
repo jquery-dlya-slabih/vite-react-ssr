@@ -1,1 +1,1 @@
-export const HTML_DIVIDER = 'app start here';
+export const HTML_DIVIDER = '!--pre--';

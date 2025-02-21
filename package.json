@@ -12,7 +12,7 @@
     "build": "rm -rf dist/ && run-p build:*",
     "build:client": "tsc -b && vite build --outDir dist/client",
     "build:server": "tsc -b && vite build -c vite.ssr.config.ts --outDir dist/server --ssr src/entry-server.tsx",
-    "prod": "DISABLE_REDIS_CACHE=false NODE_ENV=production tsx server.ts",
+    "prod": "DISABLE_REDIS_CACHE=true NODE_ENV=production tsx server.ts",
     "lint": "eslint src",
     "prettier:write": "prettier -w .",
     "prettier:check": "prettier -c .",

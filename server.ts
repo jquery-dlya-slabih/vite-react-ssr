@@ -7,12 +7,10 @@ import { createServer as createViteServer } from 'vite';
 import compression from 'compression';
 import mkcert from 'vite-plugin-mkcert';
 import tailwindcss from '@tailwindcss/vite';
-import serialize from 'serialize-javascript';
 import Redis from 'ioredis';
 
 import type { ViteDevServer } from 'vite';
-import type { DehydratedState } from '@tanstack/react-query';
-import type { Request } from 'express';
+import type { Request, Response } from 'express';
 
 import alias from './vite.alias.ts';
 
@@ -24,9 +22,9 @@ const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
-async function renderHTML(req: Request, vite: ViteDevServer) {
+async function renderHTML(req: Request, res: Response, vite: ViteDevServer) {
   const url = req.originalUrl;
-  let render: (url: string) => Promise<{ app: string; dehydratedState: DehydratedState; head: string }>;
+  let render: (url: string, res: Response, template: string) => Promise<void>;
   let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
 
   if (!isProduction) {
@@ -36,13 +34,7 @@ async function renderHTML(req: Request, vite: ViteDevServer) {
     render = (await import(serverEntry)).render;
   }
 
-  const renderData = await render(url);
-  const rqs = serialize(renderData.dehydratedState);
-
-  return template
-    .replace('<!--head-outlet-->', renderData.head)
-    .replace('<!--ssr-outlet-->', renderData.app)
-    .replace('<!--rqs-outlet-->', `window.__REACT_QUERY_STATE__ = ${rqs};`);
+  await render(url, res, template);
 }
 
 async function createServer() {
@@ -87,17 +79,14 @@ async function createServer() {
     const url = req.originalUrl;
 
     try {
-      let html: string;
       const cacheData = await redis?.get(url).catch(() => console.log('redis get cache error'));
 
       if (cacheData) {
-        html = cacheData;
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(cacheData);
       } else {
-        html = await renderHTML(req, vite);
-        redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
+        await renderHTML(req, res, vite);
+        // redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
       }
-
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (error) {
       vite?.ssrFixStacktrace(error as Error);
       console.error(error);
