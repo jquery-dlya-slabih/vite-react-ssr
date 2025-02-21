@@ -49,7 +49,12 @@ function PromoSlider() {
             >
               <div className="absolute top-36 left-18 z-3 text-[32px] leading-36 font-bold text-white">{title}</div>
               <div className="bg-black-500/50 absolute z-2 h-full w-full" />
-              <img className="z-1 h-full w-full object-cover" src={images[0]} alt={title} />
+              <img
+                className="z-1 h-full w-full object-cover"
+                loading={index > 2 ? 'lazy' : 'eager'}
+                src={images[0]}
+                alt={title}
+              />
             </NavLink>
           );
         })}

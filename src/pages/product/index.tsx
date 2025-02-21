@@ -22,6 +22,7 @@ function Product() {
   return (
     <>
       <title>{title}</title>
+      <meta name="description" content={description} />
       <div className="p-20">
         <div className="lg:flex">
           <img src={images[0]} alt={title} className="h-312 w-full bg-gray-200 object-contain lg:h-390 lg:w-422" />

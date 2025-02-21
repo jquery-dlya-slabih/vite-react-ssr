@@ -10,7 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 import Redis from 'ioredis';
 
 import type { ViteDevServer } from 'vite';
-import type { Request, Response } from 'express';
+import type { Request } from 'express';
 
 import alias from './vite.alias.ts';
 
@@ -22,9 +22,9 @@ const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
-async function renderHTML(req: Request, res: Response, vite: ViteDevServer) {
+async function prepareHTML(req: Request, vite: ViteDevServer) {
   const url = req.originalUrl;
-  let render: (url: string, res: Response, template: string) => Promise<void>;
+  let render: (url: string, template: string) => Promise<string>;
   let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
 
   if (!isProduction) {
@@ -34,7 +34,7 @@ async function renderHTML(req: Request, res: Response, vite: ViteDevServer) {
     render = (await import(serverEntry)).render;
   }
 
-  await render(url, res, template);
+  return await render(url, template);
 }
 
 async function createServer() {
@@ -84,8 +84,9 @@ async function createServer() {
       if (cacheData) {
         res.status(200).set({ 'Content-Type': 'text/html' }).end(cacheData);
       } else {
-        await renderHTML(req, res, vite);
-        // redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
+        const html = await prepareHTML(req, vite);
+        redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
       }
     } catch (error) {
       vite?.ssrFixStacktrace(error as Error);

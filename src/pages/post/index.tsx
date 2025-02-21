@@ -22,6 +22,7 @@ function Post() {
   return (
     <>
       <title>{title}</title>
+      <meta name="description" content={body} />
       <div className="p-20">
         <h1 className="text-[22px] uppercase">{title}</h1>
         <div className="mt-24">{body}</div>

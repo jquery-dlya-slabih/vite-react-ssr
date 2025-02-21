@@ -15,6 +15,7 @@ function NotFound() {
   return (
     <>
       <title>404 Not Found</title>
+      <meta name="description" content="404 Not Found" />
       <div className="relative h-[100dvh] w-[100vw] lg:static lg:h-[60vh] lg:w-full">
         {media === 'mobile' ? (
           <img className="absolute -z-1 h-full w-full object-fill" src={layerImage} alt="background" />
