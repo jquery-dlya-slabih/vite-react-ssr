@@ -26,7 +26,7 @@ export async function render(url: string, template: string) {
         </QueryClientProvider>
       </StrictMode>,
       {
-        onShellReady() {
+        onAllReady() {
           const chunks: string[] = [];
           const writeable = new Writable({
             write(chunk, _encoding, callback) {
