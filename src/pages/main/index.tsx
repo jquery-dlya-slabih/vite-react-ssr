@@ -1,8 +1,8 @@
-import PromoSlider from './promoSlider';
-import Post from './post';
 import BestSellers from './bestSellers';
 import Blog from './blog';
+import Post from './post';
 import Products from './products';
+import PromoSlider from './promoSlider';
 
 function Main() {
   return (

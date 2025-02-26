@@ -1,15 +1,14 @@
-import { StrictMode } from 'react';
-import { renderToPipeableStream } from 'react-dom/server';
-import { StaticRouter } from 'react-router';
 import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Writable } from 'node:stream';
+import { StrictMode } from 'react';
+import { renderToPipeableStream } from 'react-dom/server';
+import { StaticRouter } from 'react-router';
+import serialize from 'serialize-javascript';
 
 import { HTML_DIVIDER } from '@/constants';
-
-import Router from '@/router.tsx';
 import preloadData from '@/preloadData.ts';
-import serialize from 'serialize-javascript';
+import Router from '@/router.tsx';
 
 export async function render(url: string, template: string) {
   const { queryClient, dehydratedState } = await preloadData(url);

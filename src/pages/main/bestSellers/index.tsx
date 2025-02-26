@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { getTopProducts } from '@/api.ts';
 import { NavLink } from 'react-router';
+
+import { getTopProducts } from '@/api.ts';
 
 const BestSellers = () => {
   const { data } = useQuery({

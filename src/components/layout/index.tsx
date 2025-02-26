@@ -1,20 +1,20 @@
-import { NavLink, Outlet, useLocation } from 'react-router';
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation } from 'react-router';
 
-import { HTML_DIVIDER } from '@/constants';
-import Authorize from '@/components/authorize';
 import { checkAuth } from '@/api.ts';
+import Authorize from '@/components/authorize';
+import { HTML_DIVIDER } from '@/constants';
 
-import menuIcon from './images/menu.svg';
-import searchIcon from './images/search.svg';
-import heartIcon from './images/heart.svg';
-import profileIcon from './images/profile.svg';
 import bagIcon from './images/bag.svg';
-import gradientImage from './images/gradient.webp';
-import footerImage from './images/footer.webp';
 import fbIcon from './images/fb.svg';
+import footerImage from './images/footer.webp';
+import gradientImage from './images/gradient.webp';
+import heartIcon from './images/heart.svg';
 import instIcon from './images/inst.svg';
+import menuIcon from './images/menu.svg';
+import profileIcon from './images/profile.svg';
+import searchIcon from './images/search.svg';
 import xIcon from './images/x.svg';
 
 export default function Layout() {

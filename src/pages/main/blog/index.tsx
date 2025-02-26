@@ -1,11 +1,12 @@
-import { Fragment } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { Fragment } from 'react';
+import { NavLink } from 'react-router';
+
 import { getPosts } from '@/api.ts';
 
-import lipsImage from './images/lips.webp';
-import girlImage from './images/girl.webp';
 import clockImage from './images/clock.svg';
-import { NavLink } from 'react-router';
+import girlImage from './images/girl.webp';
+import lipsImage from './images/lips.webp';
 
 const Blog = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({

@@ -1,5 +1,6 @@
-import { NavLink, useParams } from 'react-router';
 import { useQuery, skipToken } from '@tanstack/react-query';
+import { NavLink, useParams } from 'react-router';
+
 import { getProduct } from '@/api.ts';
 
 function Product() {

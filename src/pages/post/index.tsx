@@ -1,5 +1,6 @@
-import { NavLink, useParams } from 'react-router';
 import { useQuery, skipToken } from '@tanstack/react-query';
+import { NavLink, useParams } from 'react-router';
+
 import { getPost } from '@/api.ts';
 
 function Post() {

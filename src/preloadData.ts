@@ -1,5 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
+
 import { getTopProducts, getPosts, getPost, getMainPost, getProducts, getProduct } from '@/api.ts';
 import routes, { PATH } from '@/routes.tsx';
 

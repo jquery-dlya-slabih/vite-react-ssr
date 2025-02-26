@@ -1,7 +1,7 @@
 import Main from '@/routes/main.tsx';
+import NotFound from '@/routes/notFound.tsx';
 import Post from '@/routes/post.tsx';
 import Product from '@/routes/product.tsx';
-import NotFound from '@/routes/notFound.tsx';
 
 export enum PATH {
   MAIN = '/',

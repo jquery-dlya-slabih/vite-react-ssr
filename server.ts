@@ -1,16 +1,15 @@
+import tailwindcss from '@tailwindcss/vite';
+import compression from 'compression';
+import express from 'express';
+import type { Request } from 'express';
+import Redis from 'ioredis';
 import fs from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import express from 'express';
 import { createServer as createViteServer } from 'vite';
-import compression from 'compression';
-import mkcert from 'vite-plugin-mkcert';
-import tailwindcss from '@tailwindcss/vite';
-import Redis from 'ioredis';
-
 import type { ViteDevServer } from 'vite';
-import type { Request } from 'express';
+import mkcert from 'vite-plugin-mkcert';
 
 import alias from './vite.alias.ts';
 

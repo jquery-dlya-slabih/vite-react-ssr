@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useState, useEffect, useRef } from 'react';
+import type { MouseEvent } from 'react';
 import { NavLink } from 'react-router';
 
 import { getTopProducts } from '@/api.ts';
-
-import type { MouseEvent } from 'react';
 
 function PromoSlider() {
   const [slide, setSlide] = useState(0);

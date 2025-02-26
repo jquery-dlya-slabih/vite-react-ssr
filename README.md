@@ -95,4 +95,3 @@ For reset all cache use `/reset_redis_cache` handler.
 - https://vite-pwa-org.netlify.app/ offline mode
 - modulepreload / preload
 - 103 Early Hints
-- https://dev.to/diballesteros/how-to-quickly-sort-imports-with-prettier-3po7

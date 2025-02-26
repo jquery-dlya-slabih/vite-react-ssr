@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import type { KeyboardEvent, MouseEvent, ChangeEvent } from 'react';
 
 import { login } from '@/api.ts';
-
-import type { KeyboardEvent, MouseEvent, ChangeEvent } from 'react';
 
 function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
   const [usernameValue, setUsernameValue] = useState('');

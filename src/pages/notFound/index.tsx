@@ -1,8 +1,8 @@
-import { NavLink } from 'react-router';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router';
 
-import layerImage from './images/layer.webp';
 import desktopLayerImage from './images/desktopLayer.webp';
+import layerImage from './images/layer.webp';
 
 function NotFound() {
   const [media, setMedia] = useState('mobile');

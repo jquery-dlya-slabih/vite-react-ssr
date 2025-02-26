@@ -1,7 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getProducts } from '@/api.ts';
-import starImage from './images/star.svg';
 import { NavLink } from 'react-router';
+
+import { getProducts } from '@/api.ts';
+
+import starImage from './images/star.svg';
 
 const Products = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({

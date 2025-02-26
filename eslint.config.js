@@ -1,12 +1,12 @@
 import eslint from '@eslint/js';
-import globals from 'globals';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tsEslint from 'typescript-eslint';
-import reactPlugin from 'eslint-plugin-react';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import sonarjs from 'eslint-plugin-sonarjs';
-import importPlugin from 'eslint-plugin-import';
 import pluginQuery from '@tanstack/eslint-plugin-query';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import sonarjs from 'eslint-plugin-sonarjs';
+import globals from 'globals';
+import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
   { ignores: ['dist', 'eslint.config.js'] },

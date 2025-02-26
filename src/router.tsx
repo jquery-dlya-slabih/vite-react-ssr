@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
-import routes from '@/routes.tsx';
+
 import Layout from '@/components/layout';
+import routes from '@/routes.tsx';
 
 const Router = () => (
   <Routes>
