@@ -12,6 +12,9 @@ export default defineConfig({
   resolve: {
     alias
   },
+  build: {
+    manifest: true
+  },
   plugins: [
     tailwindcss(),
     react(),

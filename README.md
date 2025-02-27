@@ -94,4 +94,4 @@ For reset all cache use `/reset_redis_cache` handler.
 - ssg
 - https://vite-pwa-org.netlify.app/ offline mode
 - modulepreload / preload
-- 103 Early Hints
+- fastify, http2, early hints
