@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import open from 'open';
 import { createServer as createViteServer } from 'vite';
 import type { ViteDevServer } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
@@ -112,7 +113,10 @@ async function createServer() {
         app
       )
       .listen(PORT, DOMAIN, () => {
-        console.info(`Server started at https://${DOMAIN}:${PORT}`);
+        const url = `https://${DOMAIN}:${PORT}`;
+
+        console.info(`Server started at ${url}`);
+        open(url);
       });
   }
 }

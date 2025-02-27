@@ -61,7 +61,6 @@ If you want to delete all hooks:
 2. add `127.0.0.1 ssr-local.com`
 3. save file
 4. use command `npm run dev`
-5. open page on https://ssr-local.com:3000
 
 # Aliasing
 
