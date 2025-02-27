@@ -26,6 +26,7 @@ Server side rendering template
 | run prettier check             | `npm run prettier:check` |
 | run prettier write             | `npm run prettier:write` |
 | run type checking              | `npm run types`          |
+| run bundle analyzer            | `npm run analyze`        |
 
 ## Serving static files
 
