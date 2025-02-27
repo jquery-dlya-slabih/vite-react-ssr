@@ -1,4 +1,3 @@
-import tailwindcss from '@tailwindcss/vite';
 import compression from 'compression';
 import express from 'express';
 import type { Request } from 'express';
@@ -58,7 +57,6 @@ async function createServer() {
         alias
       },
       plugins: [
-        tailwindcss(),
         mkcert({
           hosts: [DOMAIN],
           savePath: 'ssl'
