@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import unusedCode from 'vite-plugin-unused-code';
 
 import manifest from './pwa.manifest.ts';
 import alias from './vite.alias.ts';
@@ -30,6 +31,11 @@ export default defineConfig({
     }),
     viteStaticCopy({
       targets: [{ src: 'public/robots.txt', dest: '..' }]
+    }),
+    unusedCode({
+      patterns: ['src/entry-client.tsx', 'src/index.css'],
+      exclude: ['src/*.d.ts'],
+      failOnHint: true
     })
   ]
 });

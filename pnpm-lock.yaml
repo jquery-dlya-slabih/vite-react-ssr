@@ -132,6 +132,9 @@ importers:
       vite-plugin-static-copy:
         specifier: ^2.2.0
         version: 2.2.0(vite@6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2))
+      vite-plugin-unused-code:
+        specifier: ^0.1.4
+        version: 0.1.4(vite@6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2))
 
 packages:
 
@@ -3693,6 +3696,11 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0
+
+  vite-plugin-unused-code@0.1.4:
+    resolution: {integrity: sha512-o0MDSYaVuMAbXA4L7736dHRBqT+XC1yfHUtNTk8YBo+D7lQL37oJC0K156oJdfMkD2LWpXl43LjR/Wek++g5xA==}
+    peerDependencies:
+      vite: '>=2.0.0'
 
   vite@6.0.8:
     resolution: {integrity: sha512-rJmB+6m3Qmo5nssFmm6hbSvaCS+5tH/iuTJYeHEOHMwqu/DPrjjBs1rlecCo4D0qy5xq506hMpkKx6pKaudUxA==}
@@ -7735,6 +7743,12 @@ snapshots:
       fast-glob: 3.3.3
       fs-extra: 11.3.0
       picocolors: 1.1.1
+      vite: 6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2)
+
+  vite-plugin-unused-code@0.1.4(vite@6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2)):
+    dependencies:
+      fast-glob: 3.3.3
+      micromatch: 4.0.8
       vite: 6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2)
 
   vite@6.0.8(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2):
