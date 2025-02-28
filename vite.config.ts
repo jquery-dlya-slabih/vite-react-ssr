@@ -3,11 +3,10 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import svgr from 'vite-plugin-svgr';
 import unusedCode from 'vite-plugin-unused-code';
 
 import manifest from './pwa.manifest.ts';
-import alias from './vite.alias.ts';
+import { alias, getSVGR } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
@@ -20,12 +19,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react(),
-    svgr({
-      include: '**/*.svg?react',
-      svgrOptions: {
-        plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx']
-      }
-    }),
+    getSVGR(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
@@ -42,7 +36,7 @@ export default defineConfig({
     unusedCode({
       patterns: ['src/entry-client.tsx', 'src/index.css'],
       exclude: ['src/*.d.ts'],
-      failOnHint: false
+      failOnHint: true
     })
   ]
 });
