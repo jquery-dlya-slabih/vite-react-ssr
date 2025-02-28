@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     unusedCode({
       patterns: ['src/**/*.*'],
-      exclude: ['src/entry-client.tsx', 'src/index.css', 'src/*.d.ts'],
+      exclude: ['src/entry-client.tsx', 'src/index.css', 'src/*.d.ts', 'src/**/*.svg'],
       failOnHint: false
     })
   ]
