@@ -12,7 +12,7 @@
     "build": "rm -rf dist/ && run-p build:*",
     "build:client": "tsc -b && vite build --outDir dist/client",
     "build:server": "tsc -b && vite build -c vite.ssr.config.ts --outDir dist/server --ssr src/entry-server.tsx",
-    "prod": "DISABLE_REDIS_CACHE=false NODE_ENV=production tsx server.ts",
+    "prod": "DISABLE_REDIS_CACHE=true NODE_ENV=production tsx server.ts",
     "lint": "eslint src",
     "prettier:write": "prettier -w .",
     "prettier:check": "prettier -c .",
@@ -21,6 +21,8 @@
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-query": "^5.66.5",
     "@tanstack/react-query-devtools": "^5.66.5",
@@ -65,6 +67,7 @@
     "vite-bundle-analyzer": "^0.17.1",
     "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-static-copy": "^2.2.0",
+    "vite-plugin-svgr": "^4.3.0",
     "vite-plugin-unused-code": "^0.1.4"
   }
 }

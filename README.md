@@ -95,3 +95,5 @@ For reset all cache use `/reset_redis_cache` handler.
 - https://vite-pwa-org.netlify.app/ offline mode
 - modulepreload / preload
 - fastify, http2, early hints
+- https://lightningcss.dev/
+- swc

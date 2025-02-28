@@ -6,16 +6,16 @@ import { checkAuth } from '@/api.ts';
 import Authorize from '@/components/authorize';
 import { HTML_DIVIDER } from '@/constants';
 
-import bagIcon from './images/bag.svg';
-import fbIcon from './images/fb.svg';
+import BagIcon from './images/bag.svg?react';
+import FbIcon from './images/fb.svg?react';
 import footerImage from './images/footer.webp';
 import gradientImage from './images/gradient.webp';
-import heartIcon from './images/heart.svg';
-import instIcon from './images/inst.svg';
-import menuIcon from './images/menu.svg';
-import profileIcon from './images/profile.svg';
-import searchIcon from './images/search.svg';
-import xIcon from './images/x.svg';
+import HearIcon from './images/heart.svg?react';
+import InstIcon from './images/inst.svg?react';
+import MenuIcon from './images/menu.svg?react';
+import ProfileIcon from './images/profile.svg?react';
+import SearchIcon from './images/search.svg?react';
+import XIcon from './images/x.svg?react';
 
 export default function Layout() {
   const { data, isError, isPending } = useQuery({
@@ -61,31 +61,21 @@ export default function Layout() {
         </div>
       </div>
       <div className="flex h-48 items-center justify-between px-20 shadow-md lg:justify-end">
-        <img src={menuIcon} alt="menu button" className="size-20 transition-colors hover:opacity-70 lg:hidden" />
-        <img
-          src={searchIcon}
-          alt="search button"
-          className="size-24 cursor-pointer transition-colors hover:opacity-70"
-        />
-        <img src={heartIcon} alt="favorites button" className="h-24 w-29 lg:-order-1 lg:mr-auto" />
+        <MenuIcon className="size-20 transition-colors hover:opacity-70 lg:hidden" />
+        <SearchIcon className="size-24 cursor-pointer transition-colors hover:opacity-70" />
+        <HearIcon className="h-24 w-29 lg:-order-1 lg:mr-auto" />
         {!isError && !isPending ? (
           <div className="flex lg:ml-16">
             <div>{data.firstName}</div>
             <img src={data.image} className="ml-6 size-24" alt="user avatar" />
           </div>
         ) : (
-          <img
+          <ProfileIcon
             onClick={() => setAuthorizeFormShowed(true)}
-            src={profileIcon}
-            alt="profile button"
             className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
           />
         )}
-        <img
-          src={bagIcon}
-          alt="cart button"
-          className="h-24 w-18 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
-        />
+        <BagIcon className="h-24 w-18 cursor-pointer transition-colors hover:opacity-70 lg:ml-16" />
       </div>
       <div className="relative flex flex-col items-center">
         <div className="flex max-w-[1200px] flex-col">
@@ -121,13 +111,13 @@ export default function Layout() {
         </a>
         <div className="mt-60 flex w-200 justify-between pb-20">
           <a href="/">
-            <img className="size-24" src={fbIcon} alt="fb link" />
+            <FbIcon className="size-24" />
           </a>
           <a href="/">
-            <img className="size-24" src={xIcon} alt="x link" />
+            <XIcon className="size-24" />
           </a>
           <a href="/">
-            <img className="size-24" src={instIcon} alt="inst link" />
+            <InstIcon className="size-24" />
           </a>
         </div>
       </footer>

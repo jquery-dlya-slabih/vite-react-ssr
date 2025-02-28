@@ -3,7 +3,7 @@ import { NavLink } from 'react-router';
 
 import { getMainPost } from '@/api.ts';
 
-import clockImage from './images/clock.svg';
+import ClockImage from './images/clock.svg?react';
 import lipsImage from './images/lips.webp';
 
 const Post = () => {
@@ -31,7 +31,7 @@ const Post = () => {
               </span>
             ))}
             <span className="mr-8">|</span>
-            <img src={clockImage} alt="clock" className="mr-8 size-12" />
+            <ClockImage className="mr-8 size-12" />
             <span>4 min</span>
           </div>
         </div>

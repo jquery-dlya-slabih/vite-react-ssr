@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 
 import { getPosts } from '@/api.ts';
 
-import clockImage from './images/clock.svg';
+import ClockIcon from './images/clock.svg?react';
 import girlImage from './images/girl.webp';
 import lipsImage from './images/lips.webp';
 
@@ -41,7 +41,7 @@ const Blog = () => {
                 <div className="flex items-center text-[12px] text-black/30 uppercase">
                   <div>{tags[0]}</div>
                   <div className="mx-10">|</div>
-                  <img src={clockImage} className="size-12 opacity-60" alt="clock" />
+                  <ClockIcon className="size-12" />
                   <div className="ml-6">{index + 2} min</div>
                 </div>
                 <div className="mt-4 text-[14px] font-bold uppercase">{title.replace('.', '')}</div>

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router';
 
 import { getProducts } from '@/api.ts';
 
-import starImage from './images/star.svg';
+import StarIcon from './images/star.svg?react';
 
 const Products = () => {
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
@@ -36,7 +36,7 @@ const Products = () => {
                 <div className="py-3 pl-6 text-[14px] opacity-30">{brand || 'brand not found'}</div>
                 <div className="flex">
                   {new Array(Math.floor(rating)).fill('star').map((_value, index) => (
-                    <img className="mr-1 first:ml-4" src={starImage} key={index} alt={'rating of product:' + rating} />
+                    <StarIcon className="mr-1 first:ml-4" key={index} />
                   ))}
                 </div>
               </div>

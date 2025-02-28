@@ -11,8 +11,6 @@ import { createServer as createViteServer } from 'vite';
 import type { ViteDevServer } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
 
-import alias from './vite.alias.ts';
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
 const templatePath = isProduction ? 'dist/client/index.html' : 'index.html';
@@ -53,9 +51,6 @@ async function createServer() {
         middlewareMode: true
       },
       appType: 'custom',
-      resolve: {
-        alias
-      },
       plugins: [
         mkcert({
           hosts: [DOMAIN],
