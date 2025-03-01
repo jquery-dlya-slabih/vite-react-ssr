@@ -1,3 +1,4 @@
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import svgr from 'vite-plugin-svgr';
 
 export const alias = {
@@ -11,3 +12,5 @@ export const getSVGR = () =>
       plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx']
     }
   });
+
+export const getViteImageOptimizer = () => ViteImageOptimizer();
