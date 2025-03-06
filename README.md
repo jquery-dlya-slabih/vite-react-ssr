@@ -12,21 +12,21 @@ Server side rendering template
 ## For prod
 
 1. install deps `pnpm i --frozen-lockfile`
-2. npm run build
-3. npm run prod
+2. pnpm build
+3. pnpm prod
 
 ## Commands
 
-| description                    | command                  |
-| ------------------------------ | ------------------------ |
-| run dev build with dev server  | `npm run dev`            |
-| run build                      | `npm run build`          |
-| run prod server (build needed) | `npm run prod`           |
-| run linting                    | `npm run lint`           |
-| run prettier check             | `npm run prettier:check` |
-| run prettier write             | `npm run prettier:write` |
-| run type checking              | `npm run types`          |
-| run bundle analyzer            | `npm run analyze`        |
+| description                    | command               |
+| ------------------------------ | --------------------- |
+| run dev build with dev server  | `pnpm dev`            |
+| run build                      | `pnpm build`          |
+| run prod server (build needed) | `pnpm prod`           |
+| run linting                    | `pnpm lint`           |
+| run prettier check             | `pnpm prettier:check` |
+| run prettier write             | `pnpm prettier:write` |
+| run type checking              | `pnpm types`          |
+| run bundle analyzer            | `pnpm analyze`        |
 
 ## Serving static files
 
@@ -61,7 +61,7 @@ If you want to delete all hooks:
 1. use command `sudo nano /etc/hosts`
 2. add `127.0.0.1 ssr-local.com`
 3. save file
-4. use command `npm run dev`
+4. use command `pnpm dev`
 
 # Aliasing
 
@@ -82,7 +82,7 @@ Cache for all html pages. Cache expiration eq 10 min.
 1. install redis `brew install redis`
 2. run redis `redis-server`
 3. change value of env `DISABLE_REDIS_CACHE` in `package.json` to `false`
-4. use `npm run dev` command
+4. use `pnpm dev` command
 
 For reset all cache use `/reset_redis_cache` handler.
 
