@@ -65,8 +65,7 @@ If you want to delete all hooks:
 
 # Aliasing
 
-1. add alias in file `vite.alias.ts`
-2. add alias in file `tsconfig.app.json`
+For aliasing just add alias in file `tsconfig.app.json`.
 
 # Test users
 
