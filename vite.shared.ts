@@ -1,9 +1,8 @@
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import svgr from 'vite-plugin-svgr';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-export const alias = {
-  '@/': '/src/'
-};
+export const getTSConfigPaths = () => tsconfigPaths();
 
 export const getSVGR = () =>
   svgr({

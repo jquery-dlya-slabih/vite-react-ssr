@@ -6,17 +6,15 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import unusedCode from 'vite-plugin-unused-code';
 
 import manifest from './pwa.manifest.ts';
-import { alias, getSVGR, getViteImageOptimizer } from './vite.shared.ts';
+import { getTSConfigPaths, getSVGR, getViteImageOptimizer } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
-  resolve: {
-    alias
-  },
   build: {
     manifest: true
   },
   plugins: [
+    getTSConfigPaths(),
     tailwindcss(),
     react(),
     getSVGR(),

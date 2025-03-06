@@ -97,3 +97,4 @@ For reset all cache use `/reset_redis_cache` handler.
 - fastify, http2, early hints
 - https://lightningcss.dev/
 - swc
+- browserslist?

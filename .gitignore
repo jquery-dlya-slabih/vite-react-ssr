@@ -4,3 +4,4 @@ node_modules
 dist
 ssl
 *.rdb
+coverage

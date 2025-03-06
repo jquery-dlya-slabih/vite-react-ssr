@@ -2,14 +2,12 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import unusedCode from 'vite-plugin-unused-code';
 
-import { alias, getSVGR } from './vite.shared.ts';
+import { getTSConfigPaths, getSVGR } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
-  resolve: {
-    alias
-  },
   plugins: [
+    getTSConfigPaths(),
     react(),
     getSVGR(),
     unusedCode({
