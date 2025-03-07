@@ -85,6 +85,12 @@ Cache for all html pages. Cache expiration eq 10 min.
 
 For reset all cache use `/reset_redis_cache` handler.
 
+# Tests
+
+- Test runner https://vitest.dev/
+- Render react components https://testing-library.com/docs/react-testing-library/intro/
+- Custom matchers to test the state of the DOM https://github.com/testing-library/jest-dom
+
 # TO DO
 
 - https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr

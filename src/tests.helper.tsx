@@ -10,7 +10,6 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 
 function renderWithProviders(ui: ReactElement, extendedRenderOptions: ExtendedRenderOptions = {}) {
   const { preloadedState = {}, ...renderOptions } = extendedRenderOptions;
-
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
