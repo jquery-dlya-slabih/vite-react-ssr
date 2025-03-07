@@ -6,6 +6,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import sonarjs from 'eslint-plugin-sonarjs';
+import testingLibrary from 'eslint-plugin-testing-library';
 import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 
@@ -52,5 +53,9 @@ export default tsEslint.config(
   {
     files: ['**/*.?(test|spec).ts?(x)'],
     ...vitest.configs.recommended
+  },
+  {
+    files: ['**/*.?(test|spec).ts?(x)'],
+    ...testingLibrary.configs['flat/react']
   }
 );
