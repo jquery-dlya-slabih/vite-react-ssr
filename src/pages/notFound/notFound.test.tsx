@@ -6,7 +6,7 @@ import renderWithProviders from '@/tests.helper.tsx';
 import NotFound from '.';
 
 describe('NotFound page tests', () => {
-  it('loads and displays greeting', async () => {
+  it('loads and displays greeting', () => {
     renderWithProviders(<NotFound />);
 
     expect(screen.getByText('Ooops page not found')).toBeInTheDocument();
