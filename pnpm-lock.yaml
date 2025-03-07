@@ -23,6 +23,9 @@ importers:
       '@tanstack/react-query-devtools':
         specifier: 5.66.5
         version: 5.66.5(@tanstack/react-query@5.66.5(react@19.0.0))(react@19.0.0)
+      '@vitest/eslint-plugin':
+        specifier: 1.1.36
+        version: 1.1.36(@typescript-eslint/utils@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)(vitest@3.0.7)
       compression:
         specifier: 1.8.0
         version: 1.8.0
@@ -1744,6 +1747,19 @@ packages:
       vitest: 3.0.7
     peerDependenciesMeta:
       '@vitest/browser':
+        optional: true
+
+  '@vitest/eslint-plugin@1.1.36':
+    resolution: {integrity: sha512-IjBV/fcL9NJRxGw221ieaDsqKqj8qUo7rvSupDxMjTXyhsCusHC6M+jFUNqBp4PCkYFcf5bjrKxeZoCEWoPxig==}
+    peerDependencies:
+      '@typescript-eslint/utils': ^8.24.0
+      eslint: '>= 8.57.0'
+      typescript: '>= 5.0.0'
+      vitest: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vitest:
         optional: true
 
   '@vitest/expect@3.0.7':
@@ -6069,6 +6085,14 @@ snapshots:
       vitest: 3.0.7(@types/node@22.13.4)(@vitest/ui@3.0.7)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2)
     transitivePeerDependencies:
       - supports-color
+
+  '@vitest/eslint-plugin@1.1.36(@typescript-eslint/utils@8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)(vitest@3.0.7)':
+    dependencies:
+      '@typescript-eslint/utils': 8.24.1(eslint@9.20.1(jiti@2.4.2))(typescript@5.7.3)
+      eslint: 9.20.1(jiti@2.4.2)
+    optionalDependencies:
+      typescript: 5.7.3
+      vitest: 3.0.7(@types/node@22.13.4)(@vitest/ui@3.0.7)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.39.0)(tsx@4.19.2)
 
   '@vitest/expect@3.0.7':
     dependencies:

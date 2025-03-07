@@ -1,5 +1,6 @@
 import eslint from '@eslint/js';
 import pluginQuery from '@tanstack/eslint-plugin-query';
+import vitest from '@vitest/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
@@ -47,5 +48,9 @@ export default tsEslint.config(
       'jsx-a11y/no-autofocus': 'off'
     }
   },
-  pluginQuery.configs['flat/recommended']
+  pluginQuery.configs['flat/recommended'],
+  {
+    files: ['**/*.?(test|spec).ts?(x)'],
+    ...vitest.configs.recommended
+  }
 );
