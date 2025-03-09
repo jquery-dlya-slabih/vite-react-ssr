@@ -29,7 +29,7 @@ function Product() {
           <img src={images[0]} alt={title} className="h-312 w-full bg-gray-200 object-contain lg:h-390 lg:w-422" />
           <div className="mt-24 lg:mt-0 lg:flex lg:flex-col lg:pl-20">
             <h1 className="text-[22px] font-light uppercase">{title}</h1>
-            <div className="font-bold uppercase">{price} &euro;</div>
+            <div className="font-bold uppercase">{price}&nbsp;&euro;</div>
             <div>
               <span className="font-bold">Rating: </span>
               <span className={rating >= 4 ? 'text-green-600' : 'text-orange-300'}>{rating}</span>

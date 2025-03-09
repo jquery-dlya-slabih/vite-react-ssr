@@ -103,3 +103,4 @@ For reset all cache use `/reset_redis_cache` handler.
 - https://lightningcss.dev/
 - swc
 - browserslist?
+- mswjs?
