@@ -5,6 +5,7 @@ import { getPost } from '@/api.ts';
 
 function Post() {
   const { id } = useParams();
+
   const { data, isPending, isError } = useQuery({
     queryKey: ['post', id],
     queryFn: id ? () => getPost(id) : skipToken
