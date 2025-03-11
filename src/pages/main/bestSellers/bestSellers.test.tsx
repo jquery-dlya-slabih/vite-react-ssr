@@ -29,6 +29,7 @@ describe('BestSellers component', () => {
     renderWithProviders(<BestSellers />);
 
     expect(screen.getAllByTestId('skeleton').length).toEqual(2);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('displays skeletons if query rejected', () => {
@@ -37,6 +38,7 @@ describe('BestSellers component', () => {
     renderWithProviders(<BestSellers />);
 
     expect(screen.getAllByTestId('skeleton').length).toEqual(2);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('displays products data', () => {
@@ -76,5 +78,6 @@ describe('BestSellers component', () => {
     expect(screen.getByText(dataFromApi[1].brand)).toBeInTheDocument();
     expect(screen.getAllByTestId('price')[0]).toHaveTextContent(dataFromApi[0].price + ' €');
     expect(screen.getAllByTestId('price')[1]).toHaveTextContent(dataFromApi[1].price + ' €');
+    expect(screen.queryByTestId('skeleton')).not.toBeInTheDocument();
   });
 });
