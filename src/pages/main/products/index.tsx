@@ -36,7 +36,7 @@ const Products = () => {
                 <div className="py-3 pl-6 text-[14px] opacity-30">{brand || 'brand not found'}</div>
                 <div className="flex">
                   {new Array(Math.floor(rating)).fill('star').map((_value, index) => (
-                    <StarIcon className="mr-1 first:ml-4" key={index} />
+                    <StarIcon data-testid={`star_${id}`} className="mr-1 first:ml-4" key={index} />
                   ))}
                 </div>
               </div>
