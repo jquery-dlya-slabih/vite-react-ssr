@@ -2,6 +2,7 @@ import eslint from '@eslint/js';
 import pluginQuery from '@tanstack/eslint-plugin-query';
 import vitest from '@vitest/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
+import eslintPluginJestDom from 'eslint-plugin-jest-dom';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import reactPlugin from 'eslint-plugin-react';
 import reactRefresh from 'eslint-plugin-react-refresh';
@@ -51,11 +52,15 @@ export default tsEslint.config(
   },
   pluginQuery.configs['flat/recommended'],
   {
-    files: ['**/*.?(test|spec).ts?(x)'],
+    files: ['**/*.test.ts?(x)'],
     ...vitest.configs.recommended
   },
   {
-    files: ['**/*.?(test|spec).ts?(x)'],
+    files: ['**/*.test.tsx'],
     ...testingLibrary.configs['flat/react']
+  },
+  {
+    files: ['**/*.test.tsx'],
+    ...eslintPluginJestDom.configs['flat/recommended']
   }
 );
