@@ -105,3 +105,4 @@ For reset all cache use `/reset_redis_cache` handler.
 - browserslist?
 - mswjs?
 - https://orval.dev/?
+- remove data-testid from production
