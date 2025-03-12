@@ -34,7 +34,6 @@ export default defineConfig({
     }),
     unusedCode({
       patterns: ['src/entry-client.tsx', 'src/index.css'],
-      exclude: ['src/*.d.ts'],
       failOnHint: true
     })
   ],
