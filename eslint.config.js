@@ -15,7 +15,7 @@ export default tsEslint.config(
   { ignores: ['dist', 'eslint.config.js'] },
   reactRefresh.configs.vite,
   eslint.configs.recommended,
-  tsEslint.configs.strict,
+  ...tsEslint.configs.strict,
   sonarjs.configs.recommended,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
@@ -50,7 +50,7 @@ export default tsEslint.config(
       'jsx-a11y/no-autofocus': 'off'
     }
   },
-  pluginQuery.configs['flat/recommended'],
+  ...pluginQuery.configs['flat/recommended'],
   {
     files: ['**/*.test.ts?(x)'],
     ...vitest.configs.recommended
