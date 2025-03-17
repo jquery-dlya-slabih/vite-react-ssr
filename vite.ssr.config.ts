@@ -1,8 +1,9 @@
 import react from '@vitejs/plugin-react';
+import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';
 import unusedCode from 'vite-plugin-unused-code';
 
-import { getTSConfigPaths, getSVGR } from './vite.shared.ts';
+import { getTSConfigPaths, getSVGR, depsUsedInServerTs } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
@@ -21,6 +22,9 @@ export default defineConfig({
         'src/**/*.test.ts?(x)'
       ],
       failOnHint: true
+    }),
+    UnpluginUnused({
+      ignore: depsUsedInServerTs
     })
   ]
 });

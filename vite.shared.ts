@@ -13,3 +13,5 @@ export const getSVGR = () =>
   });
 
 export const getViteImageOptimizer = () => ViteImageOptimizer();
+
+export const depsUsedInServerTs = ['compression', 'express', 'ioredis', 'vite-plugin-mkcert', 'open'];

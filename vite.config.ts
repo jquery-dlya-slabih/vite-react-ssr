@@ -1,12 +1,13 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import unusedCode from 'vite-plugin-unused-code';
 
 import manifest from './pwa.manifest.ts';
-import { getTSConfigPaths, getSVGR, getViteImageOptimizer } from './vite.shared.ts';
+import { getTSConfigPaths, getSVGR, getViteImageOptimizer, depsUsedInServerTs } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
@@ -35,6 +36,9 @@ export default defineConfig({
     unusedCode({
       patterns: ['src/entry-client.tsx', 'src/index.css'],
       failOnHint: true
+    }),
+    UnpluginUnused({
+      ignore: [...depsUsedInServerTs, 'serialize-javascript']
     })
   ],
   test: {
