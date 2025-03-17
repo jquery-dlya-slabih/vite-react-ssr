@@ -41,7 +41,9 @@ export default defineConfig({
     UnpluginUnused({
       ignore: [...depsUsedInServerTs, 'serialize-javascript']
     }),
-    UnpluginDetectDuplicatedDeps()
+    UnpluginDetectDuplicatedDeps({
+      throwErrorWhenDuplicated: true
+    })
   ],
   test: {
     environment: 'jsdom',
