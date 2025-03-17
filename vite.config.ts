@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import UnpluginDetectDuplicatedDeps from 'unplugin-detect-duplicated-deps/vite';
 import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -39,7 +40,8 @@ export default defineConfig({
     }),
     UnpluginUnused({
       ignore: [...depsUsedInServerTs, 'serialize-javascript']
-    })
+    }),
+    UnpluginDetectDuplicatedDeps()
   ],
   test: {
     environment: 'jsdom',
