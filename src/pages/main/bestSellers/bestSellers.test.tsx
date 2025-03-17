@@ -18,6 +18,23 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   };
 });
 
+const dataFromApi = [
+  {
+    id: 2,
+    title: 'Eyeshadow Palette with Mirror',
+    price: 19.99,
+    brand: 'Glamour Beauty',
+    images: ['https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png']
+  },
+  {
+    id: 3,
+    title: 'Powder Canister',
+    price: 14.99,
+    brand: 'Velvet Touch',
+    images: ['https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png']
+  }
+];
+
 describe('BestSellers component', () => {
   afterEach(() => {
     useQueryMock.mockReset();
@@ -42,23 +59,6 @@ describe('BestSellers component', () => {
   });
 
   it('displays products data', () => {
-    const dataFromApi = [
-      {
-        id: 2,
-        title: 'Eyeshadow Palette with Mirror',
-        price: 19.99,
-        brand: 'Glamour Beauty',
-        images: ['https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png']
-      },
-      {
-        id: 3,
-        title: 'Powder Canister',
-        price: 14.99,
-        brand: 'Velvet Touch',
-        images: ['https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png']
-      }
-    ];
-
     useQueryMock.mockImplementation(() => ({
       isPending: false,
       isError: false,

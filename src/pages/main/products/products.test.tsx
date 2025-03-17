@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import renderWithProviders from '@/tests.helper.tsx';
@@ -99,12 +99,14 @@ describe('Products component', () => {
   });
 
   it('call fetch next page on click more button', async () => {
+    const user = userEvent.setup();
     const fetchNextPageMock = vi.fn();
+
     useInfiniteQueryMock.mockImplementation(() => ({ data: [], hasNextPage: true, fetchNextPage: fetchNextPageMock }));
 
     renderWithProviders(<Products />);
 
-    await userEvent.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('button'));
 
     expect(fetchNextPageMock).toHaveBeenCalledOnce();
   });

@@ -18,14 +18,14 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   };
 });
 
-describe('Product page', () => {
-  const dataFromApi = {
-    title: 'Eyeshadow Palette with Mirror',
-    description: 'The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating.',
-    price: 19.99,
-    images: ['https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png']
-  };
+const dataFromApi = {
+  title: 'Eyeshadow Palette with Mirror',
+  description: 'The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating.',
+  price: 19.99,
+  images: ['https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png']
+};
 
+describe('Product page', () => {
   afterEach(() => {
     useQueryMock.mockReset();
   });

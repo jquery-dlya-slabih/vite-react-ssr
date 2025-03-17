@@ -18,17 +18,17 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   };
 });
 
+const dataToTest = {
+  id: 5,
+  title: 'Hopes and dreams were dashed that day.',
+  titleToBe: 'Hopes and dreams were dashed that day',
+  body: 'Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock.',
+  bodyToBe: 'It should have been expected, but it still came as a shock.',
+  tags: ['crime', 'mystery', 'love']
+};
+
 describe('Post component', () => {
   it('display text content', () => {
-    const dataToTest = {
-      id: 5,
-      title: 'Hopes and dreams were dashed that day.',
-      titleToBe: 'Hopes and dreams were dashed that day',
-      body: 'Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock.',
-      bodyToBe: 'It should have been expected, but it still came as a shock.',
-      tags: ['crime', 'mystery', 'love']
-    };
-
     useQueryMock.mockImplementation(() => ({
       data: dataToTest
     }));

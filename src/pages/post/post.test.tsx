@@ -18,6 +18,11 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   };
 });
 
+const dataFromApi = {
+  title: 'His mother had always taught him',
+  body: 'His mother had always taught him not to ever think of himself as better than others.'
+};
+
 describe('Post page', () => {
   afterEach(() => {
     useQueryMock.mockReset();
@@ -40,11 +45,6 @@ describe('Post page', () => {
   });
 
   it('displays post data', () => {
-    const dataFromApi = {
-      title: 'His mother had always taught him',
-      body: 'His mother had always taught him not to ever think of himself as better than others.'
-    };
-
     useQueryMock.mockImplementation(() => ({
       isPending: false,
       isError: false,
