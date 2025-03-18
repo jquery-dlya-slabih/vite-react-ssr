@@ -1,8 +1,8 @@
 import type { ManifestOptions } from 'vite-plugin-pwa';
 
 const manifest: Partial<ManifestOptions> = {
-  name: 'Server-side rendering template',
-  short_name: 'SSR',
+  name: 'Goods and blog',
+  short_name: 'G&B',
   display: 'standalone',
   theme_color: '#242424',
   background_color: '#242424',
@@ -37,13 +37,13 @@ const manifest: Partial<ManifestOptions> = {
   screenshots: [
     {
       src: '/client/screenshot.webp',
-      sizes: '667x320',
+      sizes: '1497x664',
       type: 'image/webp',
       form_factor: 'wide'
     },
     {
       src: '/client/mobile_screenshot.webp',
-      sizes: '320x701',
+      sizes: '320x544',
       type: 'image/webp',
       form_factor: 'narrow'
     }
