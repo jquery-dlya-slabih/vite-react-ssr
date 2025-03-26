@@ -1,4 +1,4 @@
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';
 import unusedCode from 'vite-plugin-unused-code';

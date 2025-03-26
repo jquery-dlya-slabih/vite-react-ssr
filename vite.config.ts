@@ -1,5 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import UnpluginDetectDuplicatedDeps from 'unplugin-detect-duplicated-deps/vite';
 import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';

@@ -101,7 +101,6 @@ For reset all cache use `/reset_redis_cache` handler.
 - modulepreload / preload
 - fastify, http2, early hints
 - https://lightningcss.dev/
-- swc
 - browserslist?
 - mswjs?
 - https://orval.dev/?
