@@ -8,12 +8,14 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import unusedCode from 'vite-plugin-unused-code';
 
 import manifest from './pwa.manifest.ts';
-import { getTSConfigPaths, getSVGR, getViteImageOptimizer, depsUsedInServerTs } from './vite.shared.ts';
+import { getTSConfigPaths, getSVGR, getViteImageOptimizer, depsUsedInServerTs, cssConfig } from './vite.shared.ts';
 
 export default defineConfig({
   base: '/client',
+  css: cssConfig.css,
   build: {
-    manifest: true
+    manifest: true,
+    ...cssConfig.build
   },
   plugins: [
     getTSConfigPaths(),

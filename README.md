@@ -91,6 +91,20 @@ For reset all cache use `/reset_redis_cache` handler.
 - Render react components https://testing-library.com/docs/react-testing-library/intro/
 - Custom matchers to test the state of the DOM https://github.com/testing-library/jest-dom
 
+# Lightning CSS
+
+Tailwind CSS v4.0 is designed for and tested on modern browsers, and the core functionality of the framework
+specifically depends on these browser versions:
+
+- Chrome 111 (released March 2023)
+- Safari 16.4 (released March 2023)
+- Firefox 128 (released July 2024)
+
+For this reason, we need to transpile the code to older browsers. List of supported browsers
+[here](https://browserslist.dev/?q=ZGVmYXVsdHMgYW5kIGZ1bGx5IHN1cHBvcnRzIGVzNi1tb2R1bGU%3D).
+
+In other hand, if you don't need to support older browsers than tailwind designed, you can remove Lightning CSS.
+
 # TO DO
 
 - https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
@@ -100,8 +114,6 @@ For reset all cache use `/reset_redis_cache` handler.
 - https://vite-pwa-org.netlify.app/ offline mode
 - modulepreload / preload
 - fastify, http2, early hints
-- https://lightningcss.dev/
-- browserslist?
 - mswjs?
 - https://orval.dev/?
 - remove data-testid from production
