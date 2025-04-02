@@ -1,12 +1,12 @@
 import compression from 'compression';
 import express from 'express';
-import type { Request } from 'express';
+import type { Request, Response } from 'express';
 import Redis from 'ioredis';
 import fs from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import open from 'open';
+import serverTiming from 'server-timing';
 import { createServer as createViteServer } from 'vite';
 import type { ViteDevServer } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
@@ -19,10 +19,19 @@ const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
-async function prepareHTML(req: Request, vite: ViteDevServer) {
+let render: (url: string, template: string, res: Response) => Promise<string>;
+let template: string;
+
+async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
+  res.startTime('prepareHTML', 'resolving template');
   const url = req.originalUrl;
-  let render: (url: string, template: string) => Promise<string>;
-  let template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
+
+  if (template && render) {
+    res.endTime('prepareHTML');
+    return await render(url, template, res);
+  }
+
+  template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
 
   if (!isProduction) {
     template = await vite.transformIndexHtml(url, template);
@@ -31,12 +40,19 @@ async function prepareHTML(req: Request, vite: ViteDevServer) {
     render = (await import(serverEntry)).render;
   }
 
-  return await render(url, template);
+  res.endTime('prepareHTML');
+  return await render(url, template, res);
 }
 
 async function createServer() {
   const app = express();
   const redis = IS_REDIS_DISABLED ? undefined : new Redis({ commandTimeout: 50 });
+
+  app.use(
+    serverTiming({
+      enabled: (req) => req.query.timing === 'true'
+    })
+  );
 
   if (isProduction) {
     app.use(compression());
@@ -65,20 +81,25 @@ async function createServer() {
   app.use('/reset_redis_cache', async (_req, res) => {
     const data = await redis?.flushall().catch(() => console.log('redis reset cache error'));
 
-    res.status(200).json(data || 'NOT OK');
+    res.status(200).json(data ?? 'NOT OK');
   });
 
   app.use('*', async (req, res) => {
+    res.startTime('routing', 'routing total');
     const url = req.originalUrl;
 
     try {
+      res.startTime('cache', 'get html from cache');
       const cacheData = await redis?.get(url).catch(() => console.log('redis get cache error'));
+      res.endTime('cache');
 
       if (cacheData) {
+        res.endTime('routing');
         res.status(200).set({ 'Content-Type': 'text/html' }).end(cacheData);
       } else {
-        const html = await prepareHTML(req, vite);
+        const html = await prepareHTML(req, res, vite);
         redis?.set(url, html, 'EX', 60 * 10).catch(() => console.log('redis set cache error'));
+        res.endTime('routing');
         res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
       }
     } catch (error) {
@@ -109,7 +130,6 @@ async function createServer() {
         const url = `https://${DOMAIN}:${PORT}`;
 
         console.info(`Server started at ${url}`);
-        open(url);
       });
   }
 }

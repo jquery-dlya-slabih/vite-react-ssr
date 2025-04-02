@@ -1,5 +1,6 @@
 import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import type { Response } from 'express';
 import { Writable } from 'node:stream';
 import { StrictMode } from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
@@ -10,10 +11,13 @@ import { HTML_DIVIDER } from '@/constants';
 import preloadData from '@/preloadData.ts';
 import Router from '@/router.tsx';
 
-export async function render(url: string, template: string) {
+export async function render(url: string, template: string, res: Response) {
+  res.startTime('data', 'fetching initial data');
   const { queryClient, dehydratedState } = await preloadData(url);
+  res.endTime('data');
 
   return new Promise((resolve) => {
+    res.startTime('render', 'rendering of react');
     const { pipe } = renderToPipeableStream(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
@@ -45,6 +49,8 @@ export async function render(url: string, template: string) {
               .replace('<!--rqs-outlet-->', `window.__REACT_QUERY_STATE__ = ${rqs};`);
 
             queryClient.clear();
+
+            res.endTime('render');
             resolve(html);
           });
 

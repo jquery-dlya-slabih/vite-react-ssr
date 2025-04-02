@@ -28,11 +28,11 @@
     "compression": "1.8.0",
     "express": "4.21.2",
     "ioredis": "5.5.0",
-    "open": "10.1.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-router": "7.1.5",
     "serialize-javascript": "6.0.2",
+    "server-timing": "3.3.3",
     "vite-plugin-mkcert": "1.17.6"
   },
   "devDependencies": {
