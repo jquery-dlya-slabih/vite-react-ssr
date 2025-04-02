@@ -85,6 +85,17 @@ Cache for all html pages. Cache expiration eq 10 min.
 
 For reset all cache use `/reset_redis_cache` handler.
 
+# Server timing API
+
+To enable https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Server-Timing just use query flag `timing=true`.
+
+Example:
+
+- W/o timing https://ssr-local.com:3000, https://ssr-local.com:3000/posts/5;
+- With timing https://ssr-local.com:3000/?timing=true, https://ssr-local.com:3000/posts/5?timing=true.
+
+To view data, go to chrome **devtools**, **network** tab, next select your **html**-file and choose **timing** tab.
+
 # Tests
 
 - Test runner https://vitest.dev/
