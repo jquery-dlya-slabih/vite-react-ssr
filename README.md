@@ -102,6 +102,15 @@ To view data, go to chrome **devtools**, **network** tab, next select your **htm
 - Render react components https://testing-library.com/docs/react-testing-library/intro/
 - Custom matchers to test the state of the DOM https://github.com/testing-library/jest-dom
 
+# Generating pwa assets
+
+For generating pwa assets:
+
+1. add to `public` folder your icon, name of icon must be `favicon.svg`
+2. use command `pnpm generate-pwa-assets`
+
+If you have any problems with canvas on macOS, use command `brew install pkg-config cairo pango libpng jpeg giflib librsvg`.
+
 # Lightning CSS
 
 Tailwind CSS v4.0 is designed for and tested on modern browsers, and the core functionality of the framework
@@ -119,7 +128,6 @@ In other hand, if you don't need to support older browsers than tailwind designe
 # TO DO
 
 - https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
-- critical css
 - e2e
 - https://vite-pwa-org.netlify.app/ offline mode
 - modulepreload / preload

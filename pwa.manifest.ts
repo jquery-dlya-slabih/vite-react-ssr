@@ -12,25 +12,24 @@ const manifest: Partial<ManifestOptions> = {
   lang: 'en',
   icons: [
     {
-      src: '/client/192x192.png',
-      type: 'image/png',
-      sizes: '192x192'
+      src: '/client/pwa-64x64.png',
+      sizes: '64x64',
+      type: 'image/png'
     },
     {
-      src: '/client/512x512.png',
-      type: 'image/png',
-      sizes: '512x512'
+      src: '/client/pwa-192x192.png',
+      sizes: '192x192',
+      type: 'image/png'
     },
     {
-      src: '/client/512x512.png',
-      type: 'image/png',
+      src: '/client/pwa-512x512.png',
       sizes: '512x512',
-      purpose: 'any'
+      type: 'image/png'
     },
     {
-      src: '/client/512x512.png',
-      type: 'image/png',
+      src: '/client/maskable-icon-512x512.png',
       sizes: '512x512',
+      type: 'image/png',
       purpose: 'maskable'
     }
   ],

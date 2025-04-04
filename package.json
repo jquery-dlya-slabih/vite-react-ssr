@@ -20,6 +20,7 @@
     "analyze": "analyze --config vite.analyze.ts",
     "test": "vitest --run",
     "test:watch": "vitest --coverage --ui",
+    "generate-pwa-assets": "pwa-assets-generator",
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {
@@ -52,6 +53,7 @@
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "@types/serialize-javascript": "5.0.4",
+    "@vite-pwa/assets-generator": "1.0.0",
     "@vitejs/plugin-react-swc": "3.8.1",
     "@vitest/coverage-v8": "3.0.7",
     "@vitest/eslint-plugin": "1.1.36",
