@@ -29,7 +29,7 @@ export default defineConfig({
       manifest,
       outDir: 'dist',
       workbox: {
-        globPatterns: ['**/client/**/*.{js,css,svg,png,webp}'],
+        globPatterns: ['**/*.{js,css,svg,png,webp}'],
         navigateFallback: null
       }
     }),
