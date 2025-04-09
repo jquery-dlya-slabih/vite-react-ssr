@@ -26,7 +26,7 @@ async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
   res.startTime('prepareHTML', 'resolving template');
   const url = req.originalUrl;
 
-  if (template && render) {
+  if (template && render && isProduction) {
     res.endTime('prepareHTML');
     return await render(url, template, res);
   }
