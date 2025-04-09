@@ -70,10 +70,9 @@ export default function Layout() {
             <img src={data.image} className="ml-6 size-24" alt="user avatar" />
           </div>
         ) : (
-          <ProfileIcon
-            onClick={() => setAuthorizeFormShowed(true)}
-            className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16"
-          />
+          <button data-testid="login" type="button" onClick={() => setAuthorizeFormShowed(true)}>
+            <ProfileIcon className="size-24 cursor-pointer transition-colors hover:opacity-70 lg:ml-16" />
+          </button>
         )}
         <BagIcon className="h-24 w-18 cursor-pointer transition-colors hover:opacity-70 lg:ml-16" />
       </div>

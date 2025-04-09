@@ -4,6 +4,7 @@ import vitest from '@vitest/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import eslintPluginJestDom from 'eslint-plugin-jest-dom';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import playwright from 'eslint-plugin-playwright';
 import reactPlugin from 'eslint-plugin-react';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import sonarjs from 'eslint-plugin-sonarjs';
@@ -62,5 +63,10 @@ export default tsEslint.config(
   {
     files: ['**/*.test.tsx'],
     ...eslintPluginJestDom.configs['flat/recommended']
+  },
+  {
+    ...playwright.configs['flat/recommended'],
+    files: ['tests/**'],
+    rules: playwright.configs['flat/recommended'].rules
   }
 );

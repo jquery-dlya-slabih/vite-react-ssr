@@ -17,16 +17,23 @@ Server side rendering template
 
 ## Commands
 
-| description                    | command               |
-| ------------------------------ | --------------------- |
-| run dev build with dev server  | `pnpm dev`            |
-| run build                      | `pnpm build`          |
-| run prod server (build needed) | `pnpm prod`           |
-| run linting                    | `pnpm lint`           |
-| run prettier check             | `pnpm prettier:check` |
-| run prettier write             | `pnpm prettier:write` |
-| run type checking              | `pnpm types`          |
-| run bundle analyzer            | `pnpm analyze`        |
+| description                    | command                    |
+| ------------------------------ | -------------------------- |
+| run dev build with dev server  | `pnpm dev`                 |
+| run build                      | `pnpm build`               |
+| run prod server (build needed) | `pnpm prod`                |
+| run linting                    | `pnpm lint`                |
+| run prettier check             | `pnpm prettier:check`      |
+| run prettier write             | `pnpm prettier:write`      |
+| run type checking              | `pnpm types`               |
+| run bundle analyzer            | `pnpm analyze`             |
+| run unit tests                 | `pnpm test`                |
+| show unit tests information    | `pnpm test:ui`             |
+| run e2e tests                  | `pnpm e2e`                 |
+| run e2e tests in ui            | `pnpm e2e:ui`              |
+| show e2e tests information     | `pnpm e2e:report`          |
+| run e2e codegen                | `pnpm e2e:codegen`         |
+| generate assets for pwa        | `pnpm generate-pwa-assets` |
 
 ## Serving static files
 
@@ -101,6 +108,7 @@ To view data, go to chrome **devtools**, **network** tab, next select your **htm
 - Test runner https://vitest.dev/
 - Render react components https://testing-library.com/docs/react-testing-library/intro/
 - Custom matchers to test the state of the DOM https://github.com/testing-library/jest-dom
+- E2E tests https://playwright.dev/
 
 # Generating pwa assets
 
@@ -128,10 +136,7 @@ In other hand, if you don't need to support older browsers than tailwind designe
 # TO DO
 
 - https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
-- e2e
-- https://vite-pwa-org.netlify.app/ offline mode
-- modulepreload / preload
-- fastify, http2, early hints
-- mswjs?
-- https://orval.dev/?
-- remove data-testid from production
+- https://vite-pwa-org.netlify.app/ add offline mode
+- research fastify, http2, early hints
+- research mswjs
+- research https://orval.dev/
