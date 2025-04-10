@@ -35,7 +35,7 @@ const BestSellers = () => {
               best seller january 2025
             </div>
           </div>
-          <div className="mt-4 text-black/30">{brand}</div>
+          <div className="mt-4 text-black/30 dark:text-white/30">{brand}</div>
           <div className="mt-8 text-[18px] leading-20 font-bold tracking-[1px] uppercase">{title}</div>
           <div data-testid="price" className="mt-8">
             {price} &euro;

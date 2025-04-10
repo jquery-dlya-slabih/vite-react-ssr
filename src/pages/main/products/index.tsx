@@ -32,11 +32,11 @@ const Products = () => {
           <NavLink to={`/products/${id}`} key={id}>
             <div className="relative h-138 bg-pink-200 transition-shadow hover:shadow-md hover:outline hover:outline-black">
               <img className="h-full w-full object-contain p-15" src={images[0]} alt={title} />
-              <div className="absolute -right-2 -bottom-8 flex w-[80%] items-center justify-between bg-white">
-                <div className="py-3 pl-6 text-[14px] opacity-30">{brand || 'brand not found'}</div>
-                <div className="flex">
+              <div className="absolute -right-1 -bottom-8 flex w-[80%] items-center justify-between bg-white">
+                <div className="py-3 pl-6 text-[14px] text-black/30">{brand || 'brand not found'}</div>
+                <div className="flex mr-4">
                   {new Array(Math.floor(rating)).fill('star').map((_value, index) => (
-                    <StarIcon data-testid={`star_${id}`} className="mr-1 first:ml-4" key={index} />
+                    <StarIcon data-testid={`star_${id}`} className="mr-1" key={index} />
                   ))}
                 </div>
               </div>
@@ -47,10 +47,7 @@ const Products = () => {
         ))}
       </div>
       {hasNextPage ? (
-        <button
-          onClick={() => fetchNextPage()}
-          className="my-20 w-full cursor-pointer border border-black py-10 text-[16px] font-medium transition-opacity hover:opacity-80 active:opacity-70"
-        >
+        <button onClick={() => fetchNextPage()} className="custom-button my-20 w-full">
           SHOW MORE
         </button>
       ) : (

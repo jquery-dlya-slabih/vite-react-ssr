@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router';
 
@@ -28,6 +29,14 @@ export default function Layout() {
   const location = useLocation();
   const [authorizeFormShowed, setAuthorizeFormShowed] = useState(false);
 
+  const themeCookie = Cookies.get('theme');
+  const isThemeValid = themeCookie === 'light' || themeCookie === 'dark';
+  const [theme, setTheme] = useState<'light' | 'dark'>(isThemeValid ? themeCookie : 'light');
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -35,6 +44,13 @@ export default function Layout() {
       behavior: 'smooth'
     });
   }, [location]);
+
+  const changeTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+
+    Cookies.set('theme', newTheme);
+    setTheme(newTheme);
+  };
 
   return (
     <>
@@ -60,10 +76,12 @@ export default function Layout() {
           </NavLink>
         </div>
       </div>
-      <div className="flex h-48 items-center justify-between px-20 shadow-md lg:justify-end">
-        <MenuIcon className="size-20 transition-colors hover:opacity-70 lg:hidden" />
+      <div className="flex h-48 items-center justify-between px-20 shadow-md dark:shadow-[#fb64b6]/50 lg:justify-end">
+        <MenuIcon className="size-20 transition-colors cursor-pointer hover:opacity-70 lg:hidden" />
         <SearchIcon className="size-24 cursor-pointer transition-colors hover:opacity-70" />
-        <HearIcon className="h-24 w-29 lg:-order-1 lg:mr-auto" />
+        <button className="lg:-order-1 lg:mr-auto cursor-pointer" onClick={changeTheme}>
+          <HearIcon className="h-24 w-29 animate-pulse" />
+        </button>
         {!isError && !isPending ? (
           <div className="flex lg:ml-16">
             <div>{data.firstName}</div>

@@ -38,7 +38,7 @@ const Blog = () => {
             <NavLink to={`/posts/${id}`} className="mb-18 flex lg:mb-0">
               <img className="h-108 w-112" src={index % 2 ? girlImage : lipsImage} alt="girl" />
               <div className="ml-14">
-                <div className="flex items-center text-[12px] text-black/30 uppercase">
+                <div className="flex items-center text-[12px] text-black/30 dark:text-white/30 uppercase">
                   <div>{tags[0]}</div>
                   <div className="mx-10">|</div>
                   <ClockIcon className="size-12" />
@@ -53,10 +53,7 @@ const Blog = () => {
         ))}
       </div>
       {hasNextPage ? (
-        <button
-          onClick={() => fetchNextPage()}
-          className="w-full cursor-pointer border border-black py-10 text-[16px] font-medium transition-opacity hover:opacity-80 active:opacity-70 lg:mt-18"
-        >
+        <button onClick={() => fetchNextPage()} className="custom-button w-full lg:mt-18">
           READ MORE
         </button>
       ) : null}

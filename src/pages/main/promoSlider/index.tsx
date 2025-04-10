@@ -47,7 +47,7 @@ function PromoSlider() {
               className="relative w-full flex-shrink-0 snap-center snap-always"
             >
               <div className="absolute top-36 left-18 z-3 text-[32px] leading-36 font-bold text-white">{title}</div>
-              <div className="bg-black-500/50 absolute z-2 h-full w-full" />
+              <div className="bg-neutral-800/50 absolute z-2 h-full w-full" />
               <img
                 className="z-1 h-full w-full object-cover"
                 loading={index > 2 ? 'lazy' : 'eager'}

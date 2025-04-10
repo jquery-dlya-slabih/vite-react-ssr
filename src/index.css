@@ -1,10 +1,27 @@
 @import 'tailwindcss';
+@import './components.css';
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --custom-primary-color: oklch(20.5% 0 0);
+  --custom-secondary-color: white;
+}
+
+body[data-theme='dark'] {
+  --custom-primary-color: white;
+  --custom-secondary-color: oklch(20.5% 0 0);
+}
+
+body {
+  color: var(--custom-primary-color);
+  background-color: var(--custom-secondary-color);
+}
 
 @theme {
   --font-*: initial;
 
   --spacing: 1px;
-  --color-black-500: #242424;
   --font-roboto: Roboto, serif;
 }
 

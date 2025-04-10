@@ -13,7 +13,7 @@ export default defineConfig({
       patterns: ['src/**/*.*'],
       exclude: [
         'src/entry-client.tsx',
-        'src/index.css',
+        'src/*.css',
         'src/*.d.ts',
         'src/**/*.svg',
         'src/tests.helper.tsx',

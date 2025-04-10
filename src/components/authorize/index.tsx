@@ -45,9 +45,14 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
     reset();
   };
 
+  const inputErrorClassName = isError ? 'border-b-red-500 text-red-500' : '';
+
   return (
-    <div onClick={closeForm} className="fixed inset-0 z-5 flex items-center justify-center bg-black/30">
-      <div onClick={(event) => event.stopPropagation()} className="bg-white p-40 shadow-md">
+    <div
+      onClick={closeForm}
+      className="fixed inset-0 z-5 flex items-center justify-center bg-black/30 dark:bg-black/60"
+    >
+      <div onClick={(event) => event.stopPropagation()} className="bg-white dark:bg-neutral-900 p-40 shadow-md">
         <h2 className="text-[32px] font-bold">Login</h2>
         <div className="mt-24 flex flex-col">
           <form onSubmit={tryLogin} className="flex flex-col">
@@ -57,7 +62,7 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
               onChange={onChangeUsername}
               placeholder="username"
               required
-              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${isError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
+              className={`custom-input ${inputErrorClassName}`}
             />
             <input
               value={passwordValue}
@@ -66,20 +71,13 @@ function Authorize({ closeForm }: Readonly<{ closeForm: () => void }>) {
               autoComplete="on"
               placeholder="password"
               required
-              className={`mt-12 w-208 border-b-1 p-5 text-center outline-none placeholder:text-black/70 ${isError ? 'border-b-red-500 text-red-500' : 'border-b-black'}`}
+              className={`custom-input ${inputErrorClassName}`}
             />
-            <button
-              disabled={isPending}
-              type="submit"
-              className="mt-34 w-208 cursor-pointer border border-black p-12 transition-opacity hover:opacity-80 active:opacity-70 disabled:cursor-progress disabled:border-black/50 disabled:text-black/50"
-            >
+            <button disabled={isPending} type="submit" className="custom-button mt-34 disabled:cursor-progress">
               SUBMIT
             </button>
           </form>
-          <button
-            onClick={closeForm}
-            className="mt-8 w-208 cursor-pointer border border-black p-12 transition-opacity hover:opacity-80 active:opacity-70"
-          >
+          <button onClick={closeForm} className="custom-button mt-8">
             CLOSE
           </button>
         </div>
