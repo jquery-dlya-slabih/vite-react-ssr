@@ -84,7 +84,7 @@ async function createServer() {
     res.status(200).json(data ?? 'NOT OK');
   });
 
-  app.use('*', async (req, res) => {
+  app.use('*splat', async (req, res) => {
     res.startTime('routing', 'routing total');
     const url = req.originalUrl;
 
