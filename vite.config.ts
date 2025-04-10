@@ -17,6 +17,11 @@ export default defineConfig({
     manifest: true,
     ...cssConfig.build
   },
+  server: {
+    hmr: {
+      host: '127.0.0.1'
+    }
+  },
   plugins: [
     getTSConfigPaths(),
     tailwindcss(),

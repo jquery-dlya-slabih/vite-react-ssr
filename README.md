@@ -135,7 +135,6 @@ In other hand, if you don't need to support older browsers than tailwind designe
 
 # TO DO
 
-- https://github.com/vitejs/vite/blob/v6.0.9/packages/vite/CHANGELOG.md#609-2025-01-20 - new vite release breaks hmr
 - https://vite-pwa-org.netlify.app/ add offline mode
 - research fastify, http2, early hints
 - research mswjs
