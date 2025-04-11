@@ -70,6 +70,8 @@ If you want to delete all hooks:
 3. save file
 4. use command `pnpm dev`
 
+A DNS reset may be required, for macOS the best solution is to simply restart the system.
+
 # Aliasing
 
 For aliasing just add alias in file `tsconfig.app.json`.

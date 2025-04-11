@@ -14,7 +14,6 @@ export default defineConfig({
   base: '/client',
   css: cssConfig.css,
   build: {
-    manifest: true,
     ...cssConfig.build
   },
   server: {
