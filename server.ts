@@ -9,7 +9,6 @@ import { fileURLToPath } from 'node:url';
 import serverTiming from 'server-timing';
 import { createServer as createViteServer } from 'vite';
 import type { ViteDevServer } from 'vite';
-import mkcert from 'vite-plugin-mkcert';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
@@ -66,13 +65,7 @@ async function createServer() {
       server: {
         middlewareMode: true
       },
-      appType: 'custom',
-      plugins: [
-        mkcert({
-          hosts: [DOMAIN],
-          savePath: 'ssl'
-        })
-      ]
+      appType: 'custom'
     });
 
     app.use(vite.middlewares);

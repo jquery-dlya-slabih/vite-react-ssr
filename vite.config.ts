@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import UnpluginDetectDuplicatedDeps from 'unplugin-detect-duplicated-deps/vite';
 import UnpluginUnused from 'unplugin-unused/vite';
 import { defineConfig } from 'vite';
+import mkcert from 'vite-plugin-mkcert';
 import { VitePWA } from 'vite-plugin-pwa';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import unusedCode from 'vite-plugin-unused-code';
@@ -22,6 +23,10 @@ export default defineConfig({
     }
   },
   plugins: [
+    mkcert({
+      hosts: ['ssr-local.com'],
+      savePath: 'ssl'
+    }),
     getTSConfigPaths(),
     tailwindcss(),
     react(),

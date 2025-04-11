@@ -3,4 +3,5 @@ pnpm dedupe --check
 pnpm prettier:check
 pnpm lint
 pnpm types
+pnpm test
 pnpm build
