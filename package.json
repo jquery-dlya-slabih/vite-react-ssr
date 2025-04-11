@@ -23,7 +23,7 @@
     "e2e": "exec playwright test",
     "e2e:ui": "exec playwright test --ui",
     "e2e:report": "exec playwright show-report",
-    "e2e:codegen": "exec playwright codegen http://localhost:3000",
+    "e2e:codegen": "exec playwright codegen https://ssr-local.com:3000",
     "generate-pwa-assets": "pwa-assets-generator",
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
