@@ -11,7 +11,7 @@ describe('NotFound page', () => {
 
     expect(screen.getByRole('heading')).toHaveTextContent('404');
     expect(screen.getByText('Ooops page not found')).toBeInTheDocument();
-    expect(screen.getByRole('link')).toHaveTextContent('To main page...');
+    expect(screen.getByRole('link')).toHaveTextContent('To main page');
     expect(screen.getByRole('link')).toHaveAttribute('href', '/');
   });
 });
