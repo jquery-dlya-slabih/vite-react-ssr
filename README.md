@@ -17,23 +17,23 @@ Server side rendering template
 
 ## Commands
 
-| description                    | command                    |
-| ------------------------------ | -------------------------- |
-| run dev build with dev server  | `pnpm dev`                 |
-| run build                      | `pnpm build`               |
-| run prod server (build needed) | `pnpm prod`                |
-| run linting                    | `pnpm lint`                |
-| run prettier check             | `pnpm prettier:check`      |
-| run prettier write             | `pnpm prettier:write`      |
-| run type checking              | `pnpm types`               |
-| run bundle analyzer            | `pnpm analyze`             |
-| run unit tests                 | `pnpm test`                |
-| show unit tests information    | `pnpm test:ui`             |
-| run e2e tests                  | `pnpm e2e`                 |
-| run e2e tests in ui            | `pnpm e2e:ui`              |
-| show e2e tests information     | `pnpm e2e:report`          |
-| run e2e codegen                | `pnpm e2e:codegen`         |
-| generate assets for pwa        | `pnpm generate-pwa-assets` |
+| description                         | command                    |
+| ----------------------------------- | -------------------------- |
+| run dev build with dev server       | `pnpm dev`                 |
+| run prod build                      | `pnpm build`               |
+| run prod server (prod build needed) | `pnpm prod`                |
+| run linting                         | `pnpm lint`                |
+| run prettier check                  | `pnpm prettier:check`      |
+| run prettier write                  | `pnpm prettier:write`      |
+| run type checking                   | `pnpm types`               |
+| run bundle analyzer                 | `pnpm analyze`             |
+| run unit tests                      | `pnpm test`                |
+| show unit tests information         | `pnpm test:ui`             |
+| run e2e tests                       | `pnpm e2e`                 |
+| run e2e tests in ui                 | `pnpm e2e:ui`              |
+| show e2e tests information          | `pnpm e2e:report`          |
+| run e2e codegen                     | `pnpm e2e:codegen`         |
+| generate assets for pwa             | `pnpm generate-pwa-assets` |
 
 ## Serving static files
 
