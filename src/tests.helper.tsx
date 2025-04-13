@@ -1,31 +1,17 @@
-import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { type RenderOptions, render } from '@testing-library/react';
-import { FC, PropsWithChildren, ReactElement, StrictMode } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render } from '@testing-library/react';
+import type { RenderOptions } from '@testing-library/react';
+import { StrictMode } from 'react';
+import type { FC, PropsWithChildren, ReactElement } from 'react';
 import { BrowserRouter } from 'react-router';
 
-interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-  preloadedState?: unknown;
-}
+const queryClient = new QueryClient();
 
-function renderWithProviders(ui: ReactElement, extendedRenderOptions: ExtendedRenderOptions = {}) {
-  const { preloadedState = {}, ...renderOptions } = extendedRenderOptions;
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000
-      }
-    }
-  });
-
+function renderWithProviders(ui: ReactElement, renderOptions?: RenderOptions) {
   const Wrapper: FC<PropsWithChildren> = ({ children }) => (
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <HydrationBoundary state={preloadedState}>
-          <BrowserRouter>{children}</BrowserRouter>
-        </HydrationBoundary>
-        <ReactQueryDevtools />
+        <BrowserRouter>{children}</BrowserRouter>
       </QueryClientProvider>
     </StrictMode>
   );
