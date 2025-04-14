@@ -1,7 +1,7 @@
 {
   "name": "ssr",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "engines": {
     "node": "22.14.0",
@@ -10,8 +10,8 @@
   "scripts": {
     "dev": "DISABLE_REDIS_CACHE=true tsx watch server.ts",
     "build": "rm -rf dist/ && run-s build:*",
-    "build:client": "tsc -b && vite build --outDir dist/client",
-    "build:server": "tsc -b && vite build -c vite.ssr.config.ts --outDir dist/server --ssr src/entry-server.tsx",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build -c vite.ssr.config.ts --outDir dist/server --ssr src/entry-server.tsx",
     "prod": "DISABLE_REDIS_CACHE=false NODE_ENV=production tsx server.ts",
     "lint": "eslint src tests",
     "prettier:write": "prettier -w .",
