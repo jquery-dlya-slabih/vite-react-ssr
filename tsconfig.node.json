@@ -24,7 +24,6 @@
   "include": [
     "vite.config.ts",
     "vite.ssr.config.ts",
-    "vite.alias.ts",
     "vite.analyze.ts",
     "playwright.config.ts",
     "tests"
