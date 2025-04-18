@@ -137,6 +137,9 @@ In other hand, if you don't need to support older browsers than tailwind designe
 
 # TO DO
 
+- add query options constants
+- enhance react-router usage
+- remove redundant @vitest/coverage-v8
 - https://vite-pwa-org.netlify.app/ add offline mode
 - research fastify, http2, early hints
 - research mswjs
