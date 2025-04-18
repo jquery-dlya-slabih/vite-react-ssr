@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { NavLink } from 'react-router';
 
-import { getMainPost } from '@/api.ts';
+import { mainPostQuery } from '@/queries.ts';
 
 import ClockImage from './images/clock.svg?react';
 import lipsImage from './images/lips.webp';
 
 const Post = () => {
-  const { data } = useQuery({ queryKey: ['main_post'], queryFn: getMainPost });
+  const { data } = useQuery(mainPostQuery());
 
   if (!data) {
     return null;

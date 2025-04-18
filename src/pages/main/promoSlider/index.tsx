@@ -3,12 +3,12 @@ import { useState, useEffect, useRef } from 'react';
 import type { MouseEvent } from 'react';
 import { NavLink } from 'react-router';
 
-import { getTopProducts } from '@/api.ts';
+import { topProductsQuery } from '@/queries.ts';
 
 function PromoSlider() {
   const [slide, setSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const { data } = useQuery({ queryKey: ['top_products'], queryFn: getTopProducts });
+  const { data } = useQuery(topProductsQuery());
 
   useEffect(() => {
     const interval = setInterval(() => {
