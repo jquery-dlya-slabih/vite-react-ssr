@@ -37,7 +37,8 @@ Server side rendering template
 
 ## Serving static files
 
-If you are using **nginx** or something else for serving static and compression, delete this strings from file `server.ts` and **compression** dependencies from file `package.json`.
+If you're using **NGINX** or another solution for static file **serving** and **compression**, you can remove these lines
+from `server.ts` and delete the **compression** dependency from `package.json`.
 
 ```ts
 if (isProduction) {
@@ -47,9 +48,10 @@ if (isProduction) {
 ```
 
 You may need to additionally reconfigure the public path. This can be done by setting `base` in the `vite.config.ts` file.
-The same goes for using the **vite-plugin-static-copy** plugin. It’s better to put the `robots.txt` file in the required section of the site at the CD stage. And remove the logic for copy file in the root from the CI stage.
+The same goes for using the **vite-plugin-static-copy** plugin. It’s better to put the `robots.txt` file in the
+required section of the site at the CD stage. And remove the logic for copy file in the root from the CI stage.
 
-# Hooks
+## Hooks
 
 There is a `pre-push` hook in the `.githooks` folder. If you want to add another hook, for example `pre-commit`, then you need:
 
@@ -63,27 +65,27 @@ If you want to delete all hooks:
 2. remove `prepare` command in `package.json`
 3. in project root use command `git config --unset core.hooksPath`
 
-# HTTPS
+## HTTPS
 
 1. use command `sudo nano /etc/hosts`
 2. add `127.0.0.1 ssr-local.com`
 3. save file
 4. use command `pnpm dev`
 
-A DNS reset may be required, for macOS the best solution is to simply restart the system.
+A DNS reset may be necessary. On macOS, the simplest solution is to restart the system.
 
-# Aliasing
+## Aliasing
 
 For aliasing just add alias in file `tsconfig.app.json`.
 
-# Test users
+## Test users
 
 | login  | password   |
 | ------ | ---------- |
 | avat   | avatpass   |
 | emilys | emilyspass |
 
-# Redis
+## Redis
 
 Cache for all html pages. Cache expiration eq 10 min.
 
@@ -94,7 +96,7 @@ Cache for all html pages. Cache expiration eq 10 min.
 
 For reset all cache use `/reset_redis_cache` handler.
 
-# Server timing API
+## Server timing API
 
 To enable https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Server-Timing just use query flag `timing=true`.
 
@@ -105,14 +107,14 @@ Example:
 
 To view data, go to chrome **devtools**, **network** tab, next select your **html**-file and choose **timing** tab.
 
-# Tests
+## Tests
 
 - Test runner https://vitest.dev/
 - Render react components https://testing-library.com/docs/react-testing-library/intro/
 - Custom matchers to test the state of the DOM https://github.com/testing-library/jest-dom
 - E2E tests https://playwright.dev/
 
-# Generating pwa assets
+## Generating pwa assets
 
 For generating pwa assets:
 
@@ -121,7 +123,7 @@ For generating pwa assets:
 
 If you have any problems with canvas on macOS, use command `brew install pkg-config cairo pango libpng jpeg giflib librsvg`.
 
-# Lightning CSS
+## Lightning CSS
 
 Tailwind CSS v4.0 is designed for and tested on modern browsers, and the core functionality of the framework
 specifically depends on these browser versions:
@@ -133,13 +135,12 @@ specifically depends on these browser versions:
 For this reason, we need to transpile the code to older browsers. List of supported browsers
 [here](https://browserslist.dev/?q=ZGVmYXVsdHMgYW5kIGZ1bGx5IHN1cHBvcnRzIGVzNi1tb2R1bGU%3D).
 
-In other hand, if you don't need to support older browsers than tailwind designed, you can remove Lightning CSS.
+Alternatively, if you only need to support browsers compatible with Tailwind, you can safely remove Lightning CSS.
 
-# TO DO
+## TO DO
 
 - add query options constants
 - enhance react-router usage
-- remove redundant @vitest/coverage-v8
 - https://vite-pwa-org.netlify.app/ add offline mode
 - research fastify, http2, early hints
 - research mswjs
