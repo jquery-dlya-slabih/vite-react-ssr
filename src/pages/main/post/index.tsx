@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { NavLink } from 'react-router';
 
-import { mainPostQuery } from '@/queries.ts';
+import { mainPostQuery } from '@/data/main.ts';
 
 import ClockImage from './images/clock.svg?react';
 import lipsImage from './images/lips.webp';
@@ -13,7 +13,7 @@ const Post = () => {
     return null;
   }
 
-  const { title, body, tags, id } = data;
+  const { title, body, tags, id } = data.posts[0];
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { NavLink, useParams } from 'react-router';
 
-import { postQuery } from '@/queries.ts';
+import { postQuery } from '@/data/post.ts';
 
 function Post() {
   const { id } = useParams();

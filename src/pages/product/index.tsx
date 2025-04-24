@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { NavLink, useParams } from 'react-router';
 
-import { productQuery } from '@/queries.ts';
+import { productQuery } from '@/data/product.ts';
 
 function Product() {
   const { id } = useParams();

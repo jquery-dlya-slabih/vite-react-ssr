@@ -3,9 +3,9 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router';
 
-import { checkAuth } from '@/api.ts';
 import Authorize from '@/components/authorize';
 import { HTML_DIVIDER } from '@/constants';
+import { checkAuthQuery } from '@/data/auth.ts';
 
 import BagIcon from './images/bag.svg?react';
 import FbIcon from './images/fb.svg?react';
@@ -19,16 +19,9 @@ import SearchIcon from './images/search.svg?react';
 import XIcon from './images/x.svg?react';
 
 export default function Layout() {
-  const { data, isError, isPending } = useQuery({
-    queryKey: ['me'],
-    queryFn: checkAuth,
-    retry: 1,
-    retryDelay: 3000
-  });
-
+  const { data, isError, isPending } = useQuery(checkAuthQuery());
   const location = useLocation();
   const [authorizeFormShowed, setAuthorizeFormShowed] = useState(false);
-
   const themeCookie = Cookies.get('theme');
   const isThemeValid = themeCookie === 'light' || themeCookie === 'dark';
   const [theme, setTheme] = useState<'light' | 'dark'>(isThemeValid ? themeCookie : 'light');

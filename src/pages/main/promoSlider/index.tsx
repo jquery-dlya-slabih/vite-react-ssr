@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { MouseEvent } from 'react';
 import { NavLink } from 'react-router';
 
-import { topProductsQuery } from '@/queries.ts';
+import { topProductsQuery } from '@/data/main.ts';
 
 function PromoSlider() {
   const [slide, setSlide] = useState(0);
@@ -38,7 +38,7 @@ function PromoSlider() {
   return (
     <div className="relative h-375 overflow-y-hidden">
       <div ref={carouselRef} className="flex h-395 snap-x snap-mandatory overflow-x-scroll scroll-smooth lg:mx-20">
-        {data?.map(({ id, title, images }, index) => {
+        {data?.products.map(({ id, title, images }, index) => {
           return (
             <NavLink
               id={`slide-${index}`}

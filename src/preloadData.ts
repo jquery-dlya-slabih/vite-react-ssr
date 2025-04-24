@@ -1,15 +1,9 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { matchPath } from 'react-router';
 
-import {
-  topProductsQuery,
-  bestSellersQuery,
-  mainPostQuery,
-  blogQuery,
-  productsQuery,
-  postQuery,
-  productQuery
-} from '@/queries.ts';
+import { topProductsQuery, bestSellersQuery, mainPostQuery, blogQuery, productsQuery } from '@/data/main.ts';
+import { postQuery } from '@/data/post.ts';
+import { productQuery } from '@/data/product.ts';
 import routes, { PATH } from '@/routes.tsx';
 
 export default async function preloadData(url: string) {

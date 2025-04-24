@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router';
 
-import { blogQuery } from '@/queries.ts';
+import { blogQuery } from '@/data/main.ts';
 
 import ClockIcon from './images/clock.svg?react';
 import girlImage from './images/girl.webp';

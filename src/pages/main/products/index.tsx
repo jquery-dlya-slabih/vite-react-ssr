@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { NavLink } from 'react-router';
 
-import { productsQuery } from '@/queries.ts';
+import { productsQuery } from '@/data/main.ts';
 
 import StarIcon from './images/star.svg?react';
 
