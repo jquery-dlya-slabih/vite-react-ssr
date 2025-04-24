@@ -139,7 +139,6 @@ Alternatively, if you only need to support browsers compatible with Tailwind, yo
 
 ## TO DO
 
-- enhance react-router usage
 - https://vite-pwa-org.netlify.app/ add offline mode
 - research fastify, http2, early hints
 - research mswjs

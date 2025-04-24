@@ -1,19 +1,27 @@
-import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
+import { HydrationBoundary, QueryClientProvider, dehydrate, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import type { Response } from 'express';
+import type { Response, Request } from 'express';
 import { Writable } from 'node:stream';
 import { StrictMode } from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
-import { StaticRouter } from 'react-router';
+import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'react-router';
+import type { StaticHandlerContext } from 'react-router';
 import serialize from 'serialize-javascript';
 
 import { HTML_DIVIDER } from '@/constants';
-import preloadData from '@/preloadData.ts';
-import Router from '@/router.tsx';
+import createRoutes from '@/createRoutes.tsx';
 
-export async function render(url: string, template: string, res: Response) {
+export async function render(req: Request, res: Response, template: string) {
   res.startTime('data', 'fetching initial data');
-  const { queryClient, dehydratedState } = await preloadData(url);
+
+  const queryClient = new QueryClient();
+  const routes = createRoutes(queryClient);
+  const { query, dataRoutes } = createStaticHandler(routes);
+  const request = new Request(`https://localhost.com${req.originalUrl}`);
+  const context = (await query(request)) as StaticHandlerContext;
+  const router = createStaticRouter(dataRoutes, context);
+  const dehydratedState = dehydrate(queryClient);
+
   res.endTime('data');
 
   return new Promise((resolve) => {
@@ -22,11 +30,9 @@ export async function render(url: string, template: string, res: Response) {
       <StrictMode>
         <QueryClientProvider client={queryClient}>
           <HydrationBoundary state={dehydratedState}>
-            <StaticRouter location={url}>
-              <Router />
-            </StaticRouter>
+            <StaticRouterProvider router={router} context={context} />
+            <ReactQueryDevtools />
           </HydrationBoundary>
-          <ReactQueryDevtools />
         </QueryClientProvider>
       </StrictMode>,
       {

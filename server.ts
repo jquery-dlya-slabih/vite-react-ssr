@@ -18,7 +18,7 @@ const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
 const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
-let render: (url: string, template: string, res: Response) => Promise<string>;
+let render: (req: Request, res: Response, template: string) => Promise<string>;
 let template: string;
 
 async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
@@ -27,7 +27,7 @@ async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
 
   if (template && render && isProduction) {
     res.endTime('prepareHTML');
-    return await render(url, template, res);
+    return await render(req, res, template);
   }
 
   template = fs.readFileSync(path.resolve(__dirname, templatePath), 'utf-8');
@@ -40,7 +40,7 @@ async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
   }
 
   res.endTime('prepareHTML');
-  return await render(url, template, res);
+  return await render(req, res, template);
 }
 
 async function createServer() {

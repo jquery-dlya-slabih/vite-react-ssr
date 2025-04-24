@@ -2,10 +2,11 @@ import { HydrationBoundary, QueryClient, QueryClientProvider } from '@tanstack/r
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router';
+import { createBrowserRouter } from 'react-router';
+import { RouterProvider } from 'react-router/dom';
 
+import createRoutes from '@/createRoutes.tsx';
 import '@/index.css';
-import Router from '@/router.tsx';
 
 declare global {
   interface Window {
@@ -19,8 +20,6 @@ if ('serviceWorker' in navigator && !import.meta.env.DEV) {
   });
 }
 
-const dehydratedState = window.__REACT_QUERY_STATE__;
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -29,6 +28,9 @@ const queryClient = new QueryClient({
   }
 });
 
+const routes = createRoutes(queryClient);
+const router = createBrowserRouter(routes);
+const dehydratedState = window.__REACT_QUERY_STATE__;
 const root = document.getElementById('root');
 
 if (root) {
@@ -37,11 +39,9 @@ if (root) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <HydrationBoundary state={dehydratedState}>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools />
         </HydrationBoundary>
-        <ReactQueryDevtools />
       </QueryClientProvider>
     </StrictMode>
   );
