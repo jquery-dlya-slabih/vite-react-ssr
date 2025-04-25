@@ -8,7 +8,13 @@ const UserSchema = v.object({
   accessToken: v.string()
 });
 
+const LoginSchema = v.object({
+  username: v.pipe(v.string(), v.minLength(4)),
+  password: v.pipe(v.string(), v.minLength(7))
+});
+
 type User = v.InferOutput<typeof UserSchema>;
+type Login = v.InferOutput<typeof LoginSchema>;
 
 const checkAuth = async (): Promise<User> => {
   const accessToken = document.cookie
@@ -30,11 +36,11 @@ const checkAuth = async (): Promise<User> => {
   return await res.json();
 };
 
-export const login = async ({ username, password }: { username: string; password: string }): Promise<User> => {
+export const login = async (loginData: Login): Promise<User> => {
   const res = await fetch('https://dummyjson.com/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify(v.parse(LoginSchema, loginData))
   }).then((res) => res.json());
 
   try {
