@@ -1,4 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
+import Cookies from 'js-cookie';
 import * as v from 'valibot';
 
 const UserSchema = v.object({
@@ -17,15 +18,10 @@ type User = v.InferOutput<typeof UserSchema>;
 type Login = v.InferOutput<typeof LoginSchema>;
 
 const checkAuth = async (): Promise<User> => {
-  const accessToken = document.cookie
-    .split(';')
-    .find((cookie) => cookie.includes('accessToken='))
-    ?.replace('accessToken=', '');
-
   const res = await fetch('https://dummyjson.com/auth/me', {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${accessToken}`
+      Authorization: `Bearer ${Cookies.get('accessToken')}`
     }
   });
 
