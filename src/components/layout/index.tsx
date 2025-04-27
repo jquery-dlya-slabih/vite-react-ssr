@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router';
+import { NavLink, Outlet, ScrollRestoration } from 'react-router';
 
 import Authorize from '@/components/authorize';
 import { HTML_DIVIDER } from '@/constants';
@@ -20,7 +20,6 @@ import XIcon from './images/x.svg?react';
 
 export default function Layout() {
   const { data, isError, isPending } = useQuery(checkAuthQuery());
-  const location = useLocation();
   const [authorizeFormShowed, setAuthorizeFormShowed] = useState(false);
   const themeCookie = Cookies.get('theme');
   const isThemeValid = themeCookie === 'light' || themeCookie === 'dark';
@@ -29,14 +28,6 @@ export default function Layout() {
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }, [location]);
 
   const changeTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -49,6 +40,7 @@ export default function Layout() {
     <>
       {import.meta.env.SSR && HTML_DIVIDER}
       {authorizeFormShowed && <Authorize closeForm={() => setAuthorizeFormShowed(false)} />}
+      <ScrollRestoration />
       <img src={gradientImage} alt="gradient" className="h-48 w-full" />
       <div className="absolute top-0 h-48 w-full px-20 pt-7 text-[11px] lg:px-40 lg:py-6">
         <div className="grid grid-cols-2 tracking-[1px] lg:flex lg:h-full lg:items-center lg:text-[14px]">
