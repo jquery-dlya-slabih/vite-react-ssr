@@ -87,7 +87,7 @@ For aliasing just add alias in file `tsconfig.app.json`.
 
 ## Redis
 
-Cache for all html pages. Cache expiration eq 10 min.
+Cache for all HTML pages. Cache expiration eq 10 min.
 
 1. install redis `brew install redis`
 2. run redis `redis-server`
@@ -137,9 +137,6 @@ For this reason, we need to transpile the code to older browsers. List of suppor
 
 Alternatively, if you only need to support browsers compatible with Tailwind, you can safely remove Lightning CSS.
 
-## TO DO
+## Contributing
 
-- https://vite-pwa-org.netlify.app/ add offline mode
-- research fastify, http2, early hints
-- research mswjs
-- research https://orval.dev/
+Feel free to open an issue or submit PRs.
