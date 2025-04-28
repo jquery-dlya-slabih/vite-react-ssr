@@ -1,6 +1,14 @@
 # ssr
 
-Server side rendering template
+Server side rendering template with ton of features.
+
+## Locking Environment Versions
+
+It's considered good practice to lock the versions of your environment tools, such as Node.js and pnpm. To do this,
+you can specify the required versions in the `engines` field in `package.json` and configure enforcement using the
+`.npmrc` file in your project's root.
+
+If needed, you can disable strict version checks by setting `engine-strict=false` in `.npmrc`.
 
 ## For dev
 
