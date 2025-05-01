@@ -1,7 +1,7 @@
 {
-  "name": "ssr",
+  "name": "vite-react-ssr",
   "private": true,
-  "version": "2.2.2",
+  "version": "2.2.1",
   "type": "module",
   "engines": {
     "node": "22.14.0",
