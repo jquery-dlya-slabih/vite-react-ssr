@@ -13,13 +13,13 @@ If needed, you can disable strict version checks by setting `engine-strict=false
 ## For dev
 
 1. clone project `git clone https://github.com/jquery-dlya-slabih/ssr.git`
-2. install pnpm 10.x version `npm install -g pnpm@latest-10`
+2. install pnpm 10.x version `npm install -g pnpm@10.11.0`
 3. install deps `pnpm install`
-4. run dev `pnpm run dev`
+4. run dev `pnpm dev`
 
 ## For prod
 
-1. install deps `pnpm install`
+1. install deps `pnpm install --frozen-lockfile`
 2. pnpm build
 3. pnpm prod
 
@@ -42,6 +42,10 @@ If needed, you can disable strict version checks by setting `engine-strict=false
 | show e2e tests information          | `pnpm e2e:report`          |
 | run e2e codegen                     | `pnpm e2e:codegen`         |
 | generate assets for pwa             | `pnpm generate-pwa-assets` |
+| run docker image build              | `pnpm docker:build`        |
+| start docker container              | `pnpm docker:run`          |
+| stop docker container               | `pnpm docker:stop`         |
+| up docker compose                   | `pnpm docker:compose`      |
 
 ## Serving static files
 
@@ -99,10 +103,20 @@ Cache for all HTML pages. Cache expiration eq 10 min.
 
 1. install redis `brew install redis`
 2. run redis `redis-server`
-3. change value of env `DISABLE_REDIS_CACHE` in `package.json` to `false`
+3. change value of `REDIS` env in `.env` to `true`
 4. use `pnpm dev` command
 
 For reset all cache use `/reset_redis_cache` handler.
+
+## Docker
+
+`Docker` should only be used in `production`. There’s no practical reason to use it in `development` mode.
+
+If you don't need `Redis`, you can safely remove `docker compose` related things.
+
+If you encounter a **pnpm** installation error like: `Error: Error when performing the request to
+https://registry.npmjs.org/pnpm/-/pnpm-10.11.0.tgz; for troubleshooting help,
+see https://github.com/nodejs/corepack#troubleshooting.`). Try running the `docker:build` command again.
 
 ## Server timing API
 
