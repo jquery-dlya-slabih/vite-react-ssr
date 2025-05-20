@@ -1,7 +1,7 @@
 {
   "name": "vite-react-ssr",
   "private": true,
-  "version": "2.4.0",
+  "version": "2.5.0",
   "type": "module",
   "engines": {
     "node": "22.14.0",
@@ -29,7 +29,6 @@
     "docker:build": "docker build -t vite-react-ssr:latest .",
     "docker:run": "docker run -it --cpus=1 --memory=256m -p 3000:3000 -d --name vite-react-ssr vite-react-ssr:latest",
     "docker:stop": "docker stop vite-react-ssr",
-    "docker:compose": "COMPOSE_BAKE=true docker compose up -d",
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {

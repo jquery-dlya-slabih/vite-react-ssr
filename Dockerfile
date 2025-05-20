@@ -26,9 +26,9 @@ COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 COPY --from=build /app/server.ts /app/server.ts
 
-ENV REDIS="true"
-ENV REDIST_HOST="redis"
-
 EXPOSE 8000
+
+ENV REDIS="true"
+ENV REDIS_HOST="localhost"
 
 CMD [ "npm", "run", "prod" ]

@@ -19,6 +19,13 @@ If needed, you can disable strict version checks by setting `engine-strict=false
 
 ## For prod
 
+### With docker
+
+1. `npm run docker:build`
+2. `npm run docker:start`
+
+### Without docker
+
 1. install deps `pnpm install --frozen-lockfile`
 2. pnpm build
 3. pnpm prod
@@ -45,7 +52,6 @@ If needed, you can disable strict version checks by setting `engine-strict=false
 | run docker image build              | `pnpm docker:build`        |
 | start docker container              | `pnpm docker:run`          |
 | stop docker container               | `pnpm docker:stop`         |
-| up docker compose                   | `pnpm docker:compose`      |
 
 ## Serving static files
 
@@ -111,8 +117,6 @@ For reset all cache use `/reset_redis_cache` handler.
 ## Docker
 
 `Docker` should only be used in `production`. There’s no practical reason to use it in `development` mode.
-
-If you don't need `Redis`, you can safely remove `docker compose` related things.
 
 If you encounter a **pnpm** installation error like: `Error: Error when performing the request to
 https://registry.npmjs.org/pnpm/-/pnpm-10.11.0.tgz; for troubleshooting help,

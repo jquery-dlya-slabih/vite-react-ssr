@@ -9,6 +9,7 @@ LICENSE
 README.md
 vite.analyze.ts
 playwright.config.ts
+dump.rdb
 /coverage/
 /test-results/
 /playwright-report/
