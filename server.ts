@@ -45,7 +45,9 @@ async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
 
 async function createServer() {
   const app = express();
-  const redis = IS_REDIS_DISABLED ? undefined : new Redis({ commandTimeout: 50 });
+  const redis = IS_REDIS_DISABLED
+    ? undefined
+    : new Redis({ host: process.env.REDIS_HOST || 'localhost', commandTimeout: 50 });
 
   app.use(
     serverTiming({

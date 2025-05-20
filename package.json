@@ -1,12 +1,13 @@
 {
   "name": "vite-react-ssr",
   "private": true,
-  "version": "2.2.1",
+  "version": "2.3.0",
   "type": "module",
   "engines": {
     "node": "22.14.0",
     "pnpm": "10"
   },
+  "packageManager": "pnpm@10.11.0",
   "scripts": {
     "dev": "DISABLE_REDIS_CACHE=true tsx watch server.ts",
     "build": "rm -rf dist/ && run-s build:*",
@@ -25,10 +26,15 @@
     "e2e:report": "exec playwright show-report",
     "e2e:codegen": "exec playwright codegen https://ssr-local.com:3000",
     "generate-pwa-assets": "pwa-assets-generator",
+    "docker:build": "docker build -t vite-react-ssr:latest .",
+    "docker:run": "docker run -it --cpus=1 --memory=256m -p 3000:3000 -d --name vite-react-ssr vite-react-ssr:latest",
+    "docker:stop": "docker stop vite-react-ssr",
+    "docker:compose": "COMPOSE_BAKE=true docker compose up -d",
     "prepare": "git config --local core.hooksPath .githooks || echo 'An error occurred while installing the git hooks configuration'"
   },
   "dependencies": {
-    "@tanstack/react-query": "5.72.2",
+    "@tanstack/react-query": "5.76.1",
+    "@tanstack/react-query-devtools": "5.76.1",
     "compression": "1.8.0",
     "express": "5.1.0",
     "ioredis": "5.6.0",
@@ -38,7 +44,9 @@
     "react-router": "7.5.0",
     "serialize-javascript": "6.0.2",
     "server-timing": "3.3.3",
-    "valibot": "1.0.0"
+    "tsx": "4.19.4",
+    "valibot": "1.0.0",
+    "vite": "6.3.5"
   },
   "devDependencies": {
     "@eslint/js": "9.24.0",
@@ -47,7 +55,6 @@
     "@svgr/plugin-svgo": "8.1.0",
     "@tailwindcss/vite": "4.1.3",
     "@tanstack/eslint-plugin-query": "5.72.2",
-    "@tanstack/react-query-devtools": "5.72.2",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
@@ -85,12 +92,10 @@
     "sharp": "0.34.1",
     "svgo": "3.3.2",
     "tailwindcss": "4.1.3",
-    "tsx": "4.19.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.29.1",
     "unplugin-detect-duplicated-deps": "2.0.0",
     "unplugin-unused": "0.4.4",
-    "vite": "6.2.6",
     "vite-bundle-analyzer": "0.18.1",
     "vite-plugin-image-optimizer": "1.1.8",
     "vite-plugin-mkcert": "1.17.8",

@@ -1,0 +1,12 @@
+name: vite-react
+services:
+  ssr:
+    build: .
+    ports:
+      - "3000:3000"
+    cpus: 1
+    mem_limit: '256mb'
+  redis:
+    image: "redis"
+    cpus: 1
+    mem_limit: '256mb'

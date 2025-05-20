@@ -17,7 +17,7 @@ export const getSVGR = () =>
 
 export const getViteImageOptimizer = () => ViteImageOptimizer();
 
-export const depsUsedInServerTs = ['compression', 'express', 'ioredis', 'server-timing'];
+export const depsUsedInServerTs = ['compression', 'express', 'ioredis', 'server-timing', 'tsx', 'vite'];
 
 export const cssConfig: { css: CSSOptions; build: BuildEnvironmentOptions } = {
   css: {
