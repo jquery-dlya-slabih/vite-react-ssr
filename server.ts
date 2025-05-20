@@ -16,7 +16,6 @@ const templatePath = isProduction ? 'dist/client/index.html' : 'index.html';
 const serverEntry = isProduction ? './dist/server/entry-server.js' : 'src/entry-server.tsx';
 const PORT = 3000;
 const DOMAIN = isProduction ? 'localhost' : 'ssr-local.com';
-const IS_REDIS_DISABLED = process.env.DISABLE_REDIS_CACHE === 'true';
 
 let render: (req: Request, res: Response, template: string) => Promise<string>;
 let template: string;
@@ -44,10 +43,13 @@ async function prepareHTML(req: Request, res: Response, vite: ViteDevServer) {
 }
 
 async function createServer() {
+  if (!isProduction) {
+    await import('dotenv/config');
+  }
+
   const app = express();
-  const redis = IS_REDIS_DISABLED
-    ? undefined
-    : new Redis({ host: process.env.REDIS_HOST || 'localhost', commandTimeout: 50 });
+  const redis =
+    process.env.REDIS === 'true' ? new Redis({ host: process.env.REDIS_HOST, commandTimeout: 50 }) : undefined;
 
   app.use(
     serverTiming({
